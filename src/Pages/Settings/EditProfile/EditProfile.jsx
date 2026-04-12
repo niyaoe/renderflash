@@ -262,7 +262,7 @@ export default function EditProfile() {
 
     try {
       await axios.put(
-        "https://render-flash-server.onrender.com/api/user/update",
+        `${API_URL}/api/user/update`,
         {
           ...formData,
           softwares: selectedSoftwares,
