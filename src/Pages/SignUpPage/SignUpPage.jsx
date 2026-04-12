@@ -47,17 +47,7 @@ const SignUpPage = () => {
           avatar: res.data.user.avatar,
         }),
       );
-      toast.success("Login successful", {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-      });
+      toast.success("Login successful");
 
       // redirect to profile/home
       navigate("/main/profile");

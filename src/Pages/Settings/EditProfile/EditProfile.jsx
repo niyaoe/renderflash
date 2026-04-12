@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./EditProfile.css";
 import { API_URL } from "../../../utils/api" 
+import { toast } from "react-toastify";
 
 export default function EditProfile() {
   const [preview, setPreview] = useState(null);
@@ -275,10 +276,10 @@ export default function EditProfile() {
         },
       );
 
-      alert("Profile Updated");
+      toast.success("Profile Updated");
     } catch (err) {
       console.log(err);
-      alert("Update failed");
+      toast.error("Update failed");
     }
   };
 
