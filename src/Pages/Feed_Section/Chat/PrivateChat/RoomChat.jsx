@@ -95,6 +95,10 @@ export default function RoomChat() {
     setInput("");
   };
 
+    const handleKeyDown = (e) => {
+    if (e.key === "Enter") sendMessage();
+  };
+
   return (
     <div className="rf-room-chat-container">
       <div className="rf-room-header">
@@ -134,6 +138,7 @@ export default function RoomChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type message..."
+          onKeyDown={handleKeyDown}
         />
         <button className="rf-room-send-btn" onClick={sendMessage}>
           <i className="bi bi-send-fill"></i>

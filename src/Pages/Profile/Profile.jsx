@@ -90,6 +90,7 @@ const Profile = () => {
 
           {/* Bio Section */}
           <div className="profile-bio">
+            <p>{user.name}</p>
             <p className="bio-p">{user.bio}</p>
 
             {/* softwares */}
