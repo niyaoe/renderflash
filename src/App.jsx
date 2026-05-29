@@ -22,6 +22,7 @@ import ProtectedRoute from "./protect/ProtectedRoute";
 import ChatHome from "./Pages/Feed_Section/Chat/ChatHome/ChatHome";
 import PrivateRoomHome from "./Pages/Feed_Section/Chat/PrivateChat/PrivateRoomHome";
 import RoomChat from "./Pages/Feed_Section/Chat/PrivateChat/RoomChat";
+import UploadPost from "./Pages/Feed_Section/UploadPost/UploadPost";
 
 const App = () => {
   return (
@@ -68,6 +69,8 @@ const App = () => {
                 <Route path="saved" element={<SavedPosts />} />
               </Route>
               <Route path="notifications" element={<Notifications />} />
+              <Route path="upload" element={<UploadPost/>} />
+
               <Route
                 path="main/profile/settings/edit-profile"
                 element={<EditProfile />}

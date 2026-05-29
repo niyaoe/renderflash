@@ -1,0 +1,108 @@
+.rf-upload-container{
+  width:100%;
+  /* min-height:100vh; */
+  display:flex;
+  justify-content:center;
+  padding:30px 15px;
+  /* background:#0f0f0f; */
+}
+
+.rf-upload-card{
+  width:100%;
+  max-width:600px;
+  background:#161616;
+  border:1px solid #252525;
+  border-radius:24px;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.rf-upload-title{
+  color:white;
+  font-size:24px;
+  font-weight:600;
+}
+
+.rf-upload-preview-wrapper{
+  width:100%;
+  border-radius:18px;
+  overflow:hidden;
+  background:#0d0d0d;
+}
+
+.rf-upload-preview{
+  width:100%;
+  max-height:500px;
+  object-fit:cover;
+  display:block;
+}
+
+.rf-upload-caption{
+  width:100%;
+  min-height:120px;
+  resize:none;
+  border:none;
+  outline:none;
+  border-radius:16px;
+  padding:16px;
+  background:#1d1d1d;
+  color:white;
+  font-size:15px;
+  font-family:"Poppins",sans-serif;
+}
+
+.rf-upload-caption::placeholder{
+  color:#888;
+}
+
+.rf-upload-file-btn{
+  width:fit-content;
+  padding:12px 18px;
+  background:#262626;
+  color:white;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.2s;
+  font-size:14px;
+}
+
+.rf-upload-file-btn:hover{
+  background:#323232;
+}
+
+.rf-upload-submit-btn{
+  width:100%;
+  border:none;
+  outline:none;
+  padding:14px;
+  border-radius:16px;
+  background:#6c2bff;
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.rf-upload-submit-btn:hover{
+  background:#7c43ff;
+}
+
+.rf-upload-submit-btn:disabled{
+  opacity:0.7;
+  cursor:not-allowed;
+}
+
+@media(max-width:600px){
+
+  .rf-upload-card{
+    padding:18px;
+  }
+
+  .rf-upload-title{
+    font-size:20px;
+  }
+
+}

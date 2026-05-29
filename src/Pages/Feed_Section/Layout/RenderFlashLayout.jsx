@@ -21,8 +21,9 @@ export default function RenderFlashLayout() {
               <NavLink to="notifications">
                 <i className="bi bi-bell-fill notification-icon"></i>
               </NavLink>
-
+              <NavLink to="upload">
               <i className="bi bi-plus-square"></i>
+              </NavLink>
             </div>
           </div>
 
