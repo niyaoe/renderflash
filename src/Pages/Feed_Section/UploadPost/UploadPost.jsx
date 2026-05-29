@@ -64,7 +64,7 @@ export default function UploadPost() {
       <div className="rf-upload-card">
 
         <h2 className="rf-upload-title">
-          Create Post
+          Upload Edit
         </h2>
 
         {/* PREVIEW */}
