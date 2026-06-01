@@ -35,8 +35,10 @@ const RenderFlashLogin = () => {
       localStorage.setItem(
         "user",
         JSON.stringify({
-          name: res.data.user.username,
+          _id: res.data.user._id,
+          username: res.data.user.username,
           avatar: res.data.user.avatar,
+          email: res.data.user.email,
         }),
       );
       toast.success("Login successful");

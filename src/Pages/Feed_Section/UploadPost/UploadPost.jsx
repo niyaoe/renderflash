@@ -8,8 +8,10 @@ export default function UploadPost() {
   const [media, setMedia] = useState(null);
   const [preview, setPreview] = useState("");
   const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState("");
 
   const currentUser = JSON.parse(localStorage.getItem("user"));
+  console.log(currentUser);
 
   /* =========================
      HANDLE FILE
@@ -36,20 +38,21 @@ export default function UploadPost() {
 
       formData.append("media", media);
       formData.append("caption", caption);
-      formData.append("user", currentUser.name);
+
+      formData.append("user", currentUser._id);
+      formData.append("username", currentUser.name);
       formData.append("avatar", currentUser.avatar);
 
-      await axios.post(
-        `${API_URL}/api/posts/create`,
-        formData
-      );
+      formData.append("category", category);
+
+      await axios.post(`${API_URL}/api/posts/create`, formData);
 
       setCaption("");
+      setCategory("");
       setMedia(null);
       setPreview("");
 
       alert("Post uploaded 🚀");
-
     } catch (err) {
       console.log(err);
       alert("Upload failed");
@@ -60,33 +63,37 @@ export default function UploadPost() {
 
   return (
     <div className="rf-upload-container">
-
       <div className="rf-upload-card">
-
-        <h2 className="rf-upload-title">
-          Upload Edit
-        </h2>
+        <h2 className="rf-upload-title">Upload Edit</h2>
 
         {/* PREVIEW */}
         {preview && (
           <div className="rf-upload-preview-wrapper">
-
             {media?.type.startsWith("video") ? (
-              <video
-                src={preview}
-                controls
-                className="rf-upload-preview"
-              />
+              <video src={preview} controls className="rf-upload-preview" />
             ) : (
-              <img
-                src={preview}
-                alt="preview"
-                className="rf-upload-preview"
-              />
+              <img src={preview} alt="preview" className="rf-upload-preview" />
             )}
-
           </div>
         )}
+
+        <select
+          className="rf-upload-category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="">Select Category</option>
+
+          <option value="Video Editing">Video Editing</option>
+          <option value="Motion Graphics">Motion Graphics</option>
+          <option value="VFX">VFX</option>
+          <option value="Photography">Photography</option>
+          <option value="Color Grading">Color Grading</option>
+          <option value="Gaming Edit">Gaming Edit</option>
+          <option value="Cinematic">Cinematic</option>
+          <option value="Tutorial">Tutorial</option>
+          <option value="Anime Edit">Anime Edit</option>
+        </select>
 
         {/* CAPTION */}
         <textarea
@@ -115,9 +122,7 @@ export default function UploadPost() {
         >
           {loading ? "Uploading..." : "Upload Post"}
         </button>
-
       </div>
-
     </div>
   );
 }
