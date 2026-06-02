@@ -40,7 +40,7 @@ export default function UploadPost() {
       formData.append("caption", caption);
 
       formData.append("user", currentUser._id);
-      formData.append("username", currentUser.name);
+      formData.append("username", currentUser.username);
       formData.append("avatar", currentUser.avatar);
 
       formData.append("category", category);
