@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./RFUploadPost.css";
 import { API_URL } from "../../../utils/api";
+import { toast } from "react-toastify";
 
 export default function UploadPost() {
   const [caption, setCaption] = useState("");
@@ -52,10 +53,12 @@ export default function UploadPost() {
       setMedia(null);
       setPreview("");
 
-      alert("Post uploaded 🚀");
+      
+      toast.success("Post uploaded");
     } catch (err) {
       console.log(err);
-      alert("Upload failed");
+      toast.error("uploaded failed");
+      
     } finally {
       setLoading(false);
     }
