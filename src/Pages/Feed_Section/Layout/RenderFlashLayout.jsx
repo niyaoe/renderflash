@@ -18,6 +18,9 @@ export default function RenderFlashLayout() {
             </div>
 
             <div className="rf-header-icons">
+              <NavLink to="users">
+                <i class="bi bi-people-fill"></i>
+              </NavLink>
               <NavLink to="notifications">
                 <i className="bi bi-bell-fill notification-icon"></i>
               </NavLink>

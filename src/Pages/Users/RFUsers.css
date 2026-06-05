@@ -1,0 +1,72 @@
+.rf-users-page {
+  width: 100%;
+  padding: 20px;
+}
+
+.rf-users-header {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.rf-users-title {
+  color: white;
+}
+
+.rf-users-search {
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+  background: #1e1e1e;
+  color: white;
+}
+
+.rf-users-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  );
+  gap: 15px;
+}
+
+.rf-user-card {
+  background: #171717;
+  border: 1px solid #2d2d2d;
+  border-radius: 16px;
+  padding: 15px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.rf-user-card:hover {
+  transform: translateY(-3px);
+}
+
+.rf-user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.rf-user-info {
+  flex: 1;
+}
+
+.rf-user-name {
+  color: white;
+  margin: 0;
+}
+
+.rf-user-username {
+  color: gray;
+  margin-top: 4px;
+}
