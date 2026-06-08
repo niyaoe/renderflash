@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./EditProfile.css";
-import { API_URL } from "../../../utils/api" 
+import { API_URL } from "../../../utils/api";
 import { toast } from "react-toastify";
 
 export default function EditProfile() {
   const [preview, setPreview] = useState(null);
+  const [avatarFile, setAvatarFile] = useState(null);
   const [selectedSoftwares, setSelectedSoftwares] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -251,10 +252,11 @@ export default function EditProfile() {
   // 🔥 IMAGE PREVIEW
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-      // Later → upload to cloudinary
-    }
+
+    if (!file) return;
+
+    setAvatarFile(file);
+    setPreview(URL.createObjectURL(file));
   };
 
   // 🔥 SUBMIT
@@ -262,19 +264,25 @@ export default function EditProfile() {
     e.preventDefault();
 
     try {
-      await axios.put(
-        `${API_URL}/api/user/update`,
-        {
-          ...formData,
-          softwares: selectedSoftwares,
-          avatar: preview, // temp (later replace with cloudinary URL)
+      const data = new FormData();
+
+      data.append("name", formData.name);
+      data.append("username", formData.username);
+      data.append("bio", formData.bio);
+      data.append("country", formData.country);
+
+      data.append("softwares", JSON.stringify(selectedSoftwares));
+
+      if (avatarFile) {
+        data.append("avatar", avatarFile);
+      }
+
+      await axios.put(`${API_URL}/api/user/update`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
+      });
 
       toast.success("Profile Updated");
     } catch (err) {
