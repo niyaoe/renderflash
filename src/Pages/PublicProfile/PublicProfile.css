@@ -1,0 +1,99 @@
+.public-profile-section {
+  display: flex;
+  justify-content: center;
+}
+
+.public-profile-card {
+  background: #151515;
+  border-radius: 12px;
+  border: 1px solid #222;
+  padding: 20px;
+  width: 100%;
+  color: #fff;
+}
+
+.public-profile-top {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.public-profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+.public-profile-username {
+  font-size: 18px;
+}
+
+.public-profile-stats {
+  display: flex;
+  gap: 20px;
+}
+
+.public-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.public-stat-number {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.public-stat-label {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.public-profile-bio {
+  margin-top: 10px;
+}
+
+.public-outer-profile {
+  display: flex;
+  justify-content: space-between;
+}
+
+.public-country-p {
+  margin-left: 5px;
+  font-size: 10px;
+  color: #aaa;
+  font-weight: 300;
+}
+
+.public-bio-p {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.public-software-p {
+  font-size: 13px;
+  color: #621eff;
+  line-height: 1.4;
+}
+
+.follow-btn {
+  background: #621eff;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.following {
+  background: #333;
+}
+
+@media (max-width: 600px) {
+  .follow-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}

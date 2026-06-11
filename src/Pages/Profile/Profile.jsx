@@ -55,7 +55,7 @@ const Profile = () => {
 
                   <div className="stat">
                     <span className="stat-number">
-                      {user.followers?.length || 8890}
+                      {user.followers?.length || 0}
                     </span>
                     <span className="stat-label">Fans</span>
                   </div>
