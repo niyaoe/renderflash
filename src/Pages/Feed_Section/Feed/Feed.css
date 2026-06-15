@@ -212,3 +212,26 @@
 
 
 /* ================commend icon end================== */
+
+
+
+
+.rf-feed-image {
+  width: 100%;
+  max-height: 700px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.rf-post-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.rf-post-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

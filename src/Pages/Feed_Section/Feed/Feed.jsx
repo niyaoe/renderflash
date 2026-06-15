@@ -1,98 +1,41 @@
-import { useState } from "react";
+
 import AutoPlayVideo from "../../../Autoplay/AutoPlayVideo";
 import "./Feed.css";
 import { FaRegWindowClose } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { API_URL } from "../../../utils/api"
 
 /* ===============================
    INITIAL POSTS
 =================================*/
-const initialPosts = [
-  {
-    id: 1,
-    category: "Ronaldo",
-    user: "@flash_editor",
-    caption: "Cinematic velocity edit 🔥",
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    likes: 12,
-    liked: false,
-    comments: 4,
-    saved: false,
-  },
-  {
-    id: 2,
-    category: "Ronaldo",
-    user: "@flash_editor",
-    caption: "Velocity transition edit ⚡",
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    likes: 8,
-    liked: false,
-    comments: 2,
-    saved: false,
-  },
-
-  // ✅ NEW POSTS
-  {
-    id: 3,
-    category: "Messi",
-    user: "@edit_master",
-    caption: "Smooth dribble cinematic edit 🐐",
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    likes: 21,
-    liked: false,
-    comments: 6,
-    saved: false,
-  },
-  {
-    id: 4,
-    category: "Football",
-    user: "@velocity_fx",
-    caption: "Epic stadium transition edit 🔥",
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    likes: 15,
-    liked: false,
-    comments: 3,
-    saved: false,
-  },
-  {
-    id: 5,
-    category: "Neymar",
-    user: "@flash_cuts",
-    caption: "Skill move slow-motion edit ✨",
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    likes: 30,
-    liked: false,
-    comments: 9,
-    saved: false,
-  },
-  {
-    id: 6,
-    category: "UCL",
-    user: "@cinematic_lab",
-    caption: "Champions League hype edit ⚽",
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    likes: 18,
-    liked: false,
-    comments: 5,
-    saved: false,
-  },
-  {
-    id: 7,
-    category: "Freestyle",
-    user: "@motion_editz",
-    caption: "Freestyle football aesthetic reel 🎬",
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
-    likes: 11,
-    liked: false,
-    comments: 2,
-    saved: false,
-  }
-];
 
 export default function Feed() {
   const [activePost, setActivePost] = useState(null);
   const [comments, setComments] = useState({});
   const [newComment, setNewComment] = useState("");
-  const [feedPosts, setFeedPosts] = useState(initialPosts);
+  const [feedPosts, setFeedPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/api/posts`);
+
+      setFeedPosts(res.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="rf-feed-loading">Loading Posts...</div>;
+  }
 
   /* ===============================
      LIKE
@@ -169,7 +112,7 @@ export default function Feed() {
           {/* USER INFO */}
           <div className="rf-video-info">
             <div className="rf-post-left">
-              <h4>{post.user}</h4>
+              <h4>{post.username}</h4>
               <p>{post.caption}</p>
             </div>
 
@@ -179,9 +122,18 @@ export default function Feed() {
           </div>
 
           {/* VIDEO */}
-          <AutoPlayVideo src={post.video} />
+          <>
+            {post.mediaType === "video" ? (
+              <AutoPlayVideo src={post.media} />
+            ) : (
+              <img
+                src={post.media}
+                alt={post.caption}
+                className="rf-feed-image"
+              />
+            )}
+          </>
 
-          
           {/* ACTIONS */}
           <div className="rf-video-actions">
             <div className="rf-actions-left">
