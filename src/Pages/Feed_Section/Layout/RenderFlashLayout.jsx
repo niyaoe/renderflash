@@ -37,7 +37,7 @@ export default function RenderFlashLayout() {
 
           <div className="reddit-actions">
             <NavLink to="users">
-              <IoPeople />
+              <i class="bi bi-people-fill"></i>
             </NavLink>
 
             <NavLink to="notifications">
