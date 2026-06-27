@@ -88,7 +88,7 @@ export default function Feed() {
     <div className="rf-video-feed">
       {feedPosts.map((post) => (
         <div key={post._id} className="rf-video-card">
-          {/* USER INFO */}
+          {/* HEADER */}
           <div className="rf-video-info">
             <div className="rf-post-user">
               <img
@@ -98,8 +98,7 @@ export default function Feed() {
               />
 
               <div>
-                <h4>u/{post.username}</h4>
-                <div className="rf-post-caption">{post.caption}</div>
+                <h4>{post.username}</h4>
               </div>
             </div>
 
@@ -119,7 +118,7 @@ export default function Feed() {
             />
           )}
 
-          {/* ACTIONS */}
+          {/* ACTION BAR */}
           <div className="rf-video-actions">
             <div className="rf-actions-left">
               <button
@@ -154,8 +153,18 @@ export default function Feed() {
               </button>
             </div>
           </div>
+
+          {/* CAPTION */}
+          {post.caption && (
+            <div className="rf-post-caption-wrap">
+              <span className="rf-post-username">{post.username}</span>
+              {post.caption}
+            </div>
+          )}
         </div>
       ))}
+
+      {/* COMMENT MODAL */}
 
       {activePost && (
         <div className="rf-comment-overlay">

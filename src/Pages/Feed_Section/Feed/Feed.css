@@ -3,30 +3,28 @@
 .rf-video-feed {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
 /* ================= CARD ================= */
 
 .rf-video-card {
-  background: #1a1a1b;
-  border: 1px solid #343536;
-  border-radius: 12px;
+  background: #121212;
+  border: 1px solid #262626;
   overflow: hidden;
-  transition: 0.2s;
 }
 
 .rf-video-card:hover {
-  border-color: #4f4f50;
+  border-color: #3d3d3d;
 }
 
 /* ================= HEADER ================= */
 
 .rf-video-info {
-  padding: 14px 16px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  padding: 12px 16px;
 }
 
 .rf-post-user {
@@ -43,30 +41,17 @@
 }
 
 .rf-post-user h4 {
+  margin: 0;
+  color: white;
   font-size: 14px;
-  margin: 0;
-  color: #d7dadc;
-}
-
-.rf-post-user p {
-  margin: 0;
-  color: #818384;
-  font-size: 12px;
-}
-
-.rf-post-caption {
-  margin-top: 4px;
-  color: #ffffff;
-  font-size: 15px;
+  font-weight: 600;
 }
 
 .rf-category {
-  background: #272729;
-  color: #d7dadc;
-  padding: 6px 10px;
-  border-radius: 20px;
   font-size: 12px;
-  border: 1px solid #343536;
+  color: #bdbdbd;
+  border: 1px solid #333;
+  padding: 5px 10px;
 }
 
 /* ================= MEDIA ================= */
@@ -82,13 +67,14 @@
 /* ================= ACTION BAR ================= */
 
 .rf-video-actions {
-  border-top: 1px solid #343536;
-  padding: 10px 16px;
+  padding: 12px 16px 8px;
 }
 
 .rf-actions-left {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 22px;
 }
 
 .rf-action-btn {
@@ -97,52 +83,60 @@
   gap: 6px;
   background: transparent;
   border: none;
-  color: #818384;
+  color: #d5d5d5;
   cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 20px;
-  transition: 0.2s;
-}
-
-.rf-action-btn:hover {
-  background: #272729;
-  color: white;
+  padding: 0;
 }
 
 .rf-action-btn i {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .rf-action-btn span {
   font-size: 14px;
-  font-weight: 500;
 }
 
-/* liked state */
+.rf-action-btn:hover {
+  color: white;
+}
 
 .bi-heart-fill {
-  color: #ff4500;
+  color: #ff3040;
 }
 
-/* ================= COMMENT MODAL ================= */
+/* ================= CAPTION ================= */
+
+.rf-post-caption-wrap {
+  padding: 0 16px 16px;
+  color: #f5f5f5;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.rf-post-username {
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+/* ================= COMMENTS ================= */
 
 .rf-comment-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, .75);
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .rf-comment-box {
   width: 100%;
   max-width: 600px;
   height: 70vh;
-  background: #1a1a1b;
-  border-radius: 18px 18px 0 0;
-  border: 1px solid #343536;
+  background: #181818;
+  border: 1px solid #2c2c2c;
   display: flex;
   flex-direction: column;
 }
@@ -151,12 +145,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  border-bottom: 1px solid #343536;
-}
-
-.rf-comment-header h4 {
-  margin: 0;
+  padding: 15px;
+  border-bottom: 1px solid #2c2c2c;
 }
 
 .rf-comment-list {
@@ -166,33 +156,32 @@
 }
 
 .rf-comment-item {
-  margin-bottom: 14px;
+  margin-bottom: 15px;
 }
 
 .rf-comment-item b {
-  color: #d7dadc;
-  font-size: 14px;
+  color: white;
 }
 
 .rf-comment-item p {
-  color: #b5b5b5;
+  color: #c8c8c8;
   margin-top: 4px;
 }
 
 .rf-comment-input {
-  padding: 12px;
-  border-top: 1px solid #343536;
   display: flex;
   gap: 10px;
+  padding: 12px;
+  border-top: 1px solid #2c2c2c;
 }
 
 .rf-comment-input input {
   flex: 1;
-  background: #272729;
+  background: #252525;
   border: none;
+  outline: none;
   color: white;
-  border-radius: 20px;
-  padding: 12px 16px;
+  padding: 12px;
 }
 
 .rf-comment-send {
@@ -201,21 +190,21 @@
   cursor: pointer;
 }
 
+.rf-close-icon {
+  cursor: pointer;
+  font-size: 20px;
+}
+
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
   .rf-video-feed {
-    gap: 12px;
+    gap: 10px;
   }
 
   .rf-video-card {
-    border-radius: 0;
     border-left: none;
     border-right: none;
-  }
-
-  .rf-video-info {
-    padding: 12px;
   }
 
   .rf-post-avatar {
@@ -224,8 +213,8 @@
   }
 
   .rf-actions-left {
-    justify-content: space-between;
-    width: 100%;
+    justify-content: flex-start;
+    gap: 22px;
   }
 
   .rf-comment-box {
