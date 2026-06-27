@@ -1,14 +1,8 @@
-
 import AutoPlayVideo from "../../../Autoplay/AutoPlayVideo";
 import "./Feed.css";
-import { FaRegWindowClose } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { API_URL } from "../../../utils/api"
-
-/* ===============================
-   INITIAL POSTS
-=================================*/
+import { API_URL } from "../../../utils/api";
 
 export default function Feed() {
   const [activePost, setActivePost] = useState(null);
@@ -25,7 +19,13 @@ export default function Feed() {
     try {
       const res = await axios.get(`${API_URL}/api/posts`);
 
-      setFeedPosts(res.data);
+      const formattedPosts = res.data.map((post) => ({
+        ...post,
+        liked: false,
+        saved: false,
+      }));
+
+      setFeedPosts(formattedPosts);
     } catch (err) {
       console.log(err);
     } finally {
@@ -33,44 +33,37 @@ export default function Feed() {
     }
   };
 
-  if (loading) {
-    return <div className="rf-feed-loading">Loading Posts...</div>;
-  }
-
-  /* ===============================
-     LIKE
-  =================================*/
-  const handleLike = async (id) => {
+  const handleLike = (postId) => {
     setFeedPosts((prev) =>
       prev.map((post) =>
-        post.id === id
+        post._id === postId
           ? {
               ...post,
               liked: !post.liked,
-              likes: post.liked ? post.likes - 1 : post.likes + 1,
             }
           : post,
       ),
     );
-
-    // await axios.post(`/api/posts/${id}/like`);
   };
 
-  /* ===============================
-     COMMENT
-  =================================*/
-  const handleComment = (id) => {
-    setActivePost(id);
-
-    // API READY
-    // axios.get(`/api/posts/${id}/comments`)
-    //   .then(res => setComments(prev => ({
-    //       ...prev,
-    //       [id]: res.data
-    //   })));
+  const handleSave = (postId) => {
+    setFeedPosts((prev) =>
+      prev.map((post) =>
+        post._id === postId
+          ? {
+              ...post,
+              saved: !post.saved,
+            }
+          : post,
+      ),
+    );
   };
 
-  const addComment = async () => {
+  const handleComment = (postId) => {
+    setActivePost(postId);
+  };
+
+  const addComment = () => {
     if (!newComment.trim()) return;
 
     const commentObj = {
@@ -85,82 +78,73 @@ export default function Feed() {
     }));
 
     setNewComment("");
-
-    // API READY
-    // await axios.post(`/api/posts/${activePost}/comments`, {
-    //   text: newComment
-    // });
   };
 
-  /* ===============================
-     SAVE POST
-  =================================*/
-  const handleSave = async (id) => {
-    setFeedPosts((prev) =>
-      prev.map((post) =>
-        post.id === id ? { ...post, saved: !post.saved } : post,
-      ),
-    );
-
-    // await axios.post(`/api/posts/${id}/save`);
-  };
+  if (loading) {
+    return <div className="rf-feed-loading">Loading Posts...</div>;
+  }
 
   return (
     <div className="rf-video-feed">
       {feedPosts.map((post) => (
-        <div key={post.id} className="rf-video-card">
+        <div key={post._id} className="rf-video-card">
           {/* USER INFO */}
           <div className="rf-video-info">
-            <div className="rf-post-left">
-              <h4>{post.username}</h4>
-              <p>{post.caption}</p>
+            <div className="rf-post-user">
+              <img
+                src={post.avatar}
+                alt={post.username}
+                className="rf-post-avatar"
+              />
+
+              <div>
+                <h4>u/{post.username}</h4>
+                <div className="rf-post-caption">{post.caption}</div>
+              </div>
             </div>
 
             <div className="rf-post-category">
-              <p className="rf-category">{post.category}</p>
+              <span className="rf-category">{post.category}</span>
             </div>
           </div>
 
-          {/* VIDEO */}
-          <>
-            {post.mediaType === "video" ? (
-              <AutoPlayVideo src={post.media} />
-            ) : (
-              <img
-                src={post.media}
-                alt={post.caption}
-                className="rf-feed-image"
-              />
-            )}
-          </>
+          {/* MEDIA */}
+          {post.mediaType === "video" ? (
+            <AutoPlayVideo src={post.media} />
+          ) : (
+            <img
+              src={post.media}
+              alt={post.caption}
+              className="rf-feed-image"
+            />
+          )}
 
           {/* ACTIONS */}
           <div className="rf-video-actions">
             <div className="rf-actions-left">
-              {/* LIKE */}
               <button
                 className="rf-action-btn"
-                onClick={() => handleLike(post.id)}
+                onClick={() => handleLike(post._id)}
               >
                 <i
                   className={`bi ${post.liked ? "bi-heart-fill" : "bi-heart"}`}
                 ></i>
-                <span>{post.likes}</span>
+
+                <span>{(post.likes?.length || 0) + (post.liked ? 1 : 0)}</span>
               </button>
 
-              {/* COMMENT */}
               <button
                 className="rf-action-btn"
-                onClick={() => handleComment(post.id)}
+                onClick={() => handleComment(post._id)}
               >
                 <i className="bi bi-chat"></i>
-                <span>{post.comments}</span>
+
+                <span>{post.commentsCount || 0}</span>
               </button>
 
-              {/* SAVE — NOW LEFT */}
               <button
                 className="rf-action-btn"
-                onClick={() => handleSave(post.id)}
+                onClick={() => handleSave(post._id)}
               >
                 <i
                   className={`bi ${
@@ -172,11 +156,13 @@ export default function Feed() {
           </div>
         </div>
       ))}
+
       {activePost && (
         <div className="rf-comment-overlay">
           <div className="rf-comment-box">
             <div className="rf-comment-header">
               <h4>Comments</h4>
+
               <i
                 className="bi bi-x-lg rf-close-icon"
                 onClick={() => setActivePost(null)}
@@ -198,6 +184,7 @@ export default function Feed() {
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Add a comment..."
               />
+
               <i
                 className="bi bi-send-fill rf-comment-send"
                 onClick={addComment}

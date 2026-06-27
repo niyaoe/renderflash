@@ -76,16 +76,15 @@ const App = () => {
               <Route path="upload" element={<UploadPost />} />
 
               <Route
-                path="main/profile/settings/edit-profile"
+                path="main/settings/edit-profile"
                 element={<EditProfile />}
               />
 
-              <Route path="/main/profile/settings" element={<SettingsLayout />}>
+              <Route path="/main/settings" element={<SettingsLayout />}>
                 <Route index element={<AccountSettings />} />
                 <Route path="account" element={<AccountSettings />} />
                 <Route path="edit-profile" element={<EditProfile />} />
                 <Route path="privacy" element={<PrivacySettings />} />
-
                 <Route path="change-password" element={<ChangePassword />} />
               </Route>
             </Route>

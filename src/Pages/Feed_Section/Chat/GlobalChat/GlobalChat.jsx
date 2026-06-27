@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./RFGlobalChat.css";
 import { io } from "socket.io-client";
 import axios from "axios";
-import { API_URL } from "../../../../utils/api"
+import { API_URL } from "../../../../utils/api";
 
 //  CONNECT BACKEND
 const socket = io(`${API_URL}`, {
@@ -19,6 +19,7 @@ export default function GlobalChat() {
     name: "guest",
     avatar: "https://i.pravatar.cc/100?img=32",
   };
+  console.log(JSON.parse(localStorage.getItem("user")));
 
   /* =========================
      LOAD OLD MESSAGES (API)
@@ -26,13 +27,11 @@ export default function GlobalChat() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await axios.get(
-          `${API_URL}/api/messages`,
-        );
+        const res = await axios.get(`${API_URL}/api/messages`);
 
         const formatted = res.data.map((msg) => ({
           ...msg,
-          isMine: msg.user === currentUser.name,
+          isMine: msg.user === currentUser.username,
         }));
 
         setMessages(formatted);
@@ -48,6 +47,12 @@ export default function GlobalChat() {
      CONNECT SOCKET
   ========================== */
   useEffect(() => {
+    // console.log(currentUser);
+    // console.log({
+    //   user: currentUser.name,
+    //   avatar: currentUser.avatar,
+    //   message: input,
+    // });
     socket.emit("join_global");
 
     socket.on("receive_message", (data) => {
@@ -55,7 +60,7 @@ export default function GlobalChat() {
         ...prev,
         {
           ...data,
-          isMine: data.user === currentUser.name,
+          isMine: data.user === currentUser.username,
         },
       ]);
     });
@@ -77,7 +82,7 @@ export default function GlobalChat() {
     if (!input.trim()) return;
 
     const newMessage = {
-      user: currentUser.name,
+      user: currentUser.username,
       message: input,
       avatar: currentUser.avatar,
       time: new Date().toLocaleTimeString([], {

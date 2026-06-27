@@ -25,7 +25,7 @@ export default function RoomChat() {
 
         const formatted = res.data.map((msg) => ({
           ...msg,
-          isMine: msg.user === user?.name,
+          isMine: msg.user === user?.username,
         }));
 
         setMessages(formatted);
@@ -45,7 +45,10 @@ export default function RoomChat() {
 
     socket.current.emit("join_room", {
       roomId,
-      user,
+      user: {
+        name: user.username,
+        avatar: user.avatar,
+      },
     });
 
     socket.current.on("room_users", (users) => {
@@ -57,7 +60,7 @@ export default function RoomChat() {
         ...prev,
         {
           ...data,
-          isMine: data.user === user?.name,
+          isMine: data.user === user?.username,
         },
       ]);
     });
@@ -84,7 +87,7 @@ export default function RoomChat() {
 
     const msg = {
       room: roomId,
-      user: user?.name,
+      user: user?.username,
       avatar: user?.avatar,
       message: input,
       time: new Date().toLocaleTimeString(),
@@ -95,7 +98,7 @@ export default function RoomChat() {
     setInput("");
   };
 
-    const handleKeyDown = (e) => {
+  const handleKeyDown = (e) => {
     if (e.key === "Enter") sendMessage();
   };
 

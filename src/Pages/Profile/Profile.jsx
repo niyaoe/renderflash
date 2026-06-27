@@ -73,14 +73,14 @@ const Profile = () => {
             {/* Right icons */}
             <div className="profile-right">
               <Link
-                to="/main/profile/settings"
+                to="/main/settings"
                 className="profile-settings-link"
               >
                 <i className="bi bi-gear-fill"></i>
               </Link>
 
               <Link
-                to="/main/profile/settings/edit-profile"
+                to="/main/settings/edit-profile"
                 className="profile-settings-link"
               >
                 <i className="bi bi-pencil-square"></i>
