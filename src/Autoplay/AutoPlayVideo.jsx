@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AutoPlayVideo({ src }) {
   const videoRef = useRef(null);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -14,9 +15,7 @@ export default function AutoPlayVideo({ src }) {
           video.pause();
         }
       },
-      {
-        threshold: 0.7, // 70% visible = play
-      }
+      { threshold: 0.7 }
     );
 
     if (video) observer.observe(video);
@@ -31,10 +30,10 @@ export default function AutoPlayVideo({ src }) {
       ref={videoRef}
       src={src}
       className="rf-video-player"
-      muted
+      muted={muted}
       loop
       playsInline
-      controls={false}
+      onClick={() => setMuted(!muted)}
     />
   );
 }
