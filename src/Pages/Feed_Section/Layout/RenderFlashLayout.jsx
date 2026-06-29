@@ -7,8 +7,12 @@ import { CgProfile } from "react-icons/cg";
 import "./RenderFlashLayout.css";
 import Users from "../../Users/Users";
 import UsersDropdown from "./RightBar/UsersDropdown";
+import { useState } from "react";
+import UploadPost from "../UploadPost/UploadPost";
 
 export default function RenderFlashLayout() {
+  const [showUploadModal, setShowUploadModal] = useState(false);
+
   return (
     <div className="reddit-layout">
       {/* HEADER */}
@@ -31,7 +35,7 @@ export default function RenderFlashLayout() {
               <i class="bi bi-people-fill"></i>
             </NavLink>
 
-            <NavLink to="upload">
+            < NavLink onClick={() => setShowUploadModal(true)}>
               <i className="bi bi-plus-square"></i>
             </NavLink>
           </div>
@@ -123,6 +127,9 @@ export default function RenderFlashLayout() {
           <CgProfile />
         </NavLink>
       </nav>
+      {showUploadModal && (
+        <UploadPost onClose={() => setShowUploadModal(false)} />
+      )}
     </div>
   );
 }

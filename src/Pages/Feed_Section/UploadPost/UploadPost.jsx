@@ -4,7 +4,7 @@ import "./RFUploadPost.css";
 import { API_URL } from "../../../utils/api";
 import { toast } from "react-toastify";
 
-export default function UploadPost() {
+export default function UploadPost({ onClose }) {
   const [caption, setCaption] = useState("");
   const [media, setMedia] = useState(null);
   const [preview, setPreview] = useState("");
@@ -12,7 +12,7 @@ export default function UploadPost() {
   const [category, setCategory] = useState("");
 
   const currentUser = JSON.parse(localStorage.getItem("user"));
-  console.log(currentUser);
+  // console.log(currentUser);
 
   /* =========================
      HANDLE FILE
@@ -55,6 +55,7 @@ export default function UploadPost() {
 
       
       toast.success("Post uploaded");
+      onClose?.();
     } catch (err) {
       console.log(err);
       toast.error("uploaded failed");
@@ -65,21 +66,45 @@ export default function UploadPost() {
   };
 
   return (
-    <div className="rf-upload-container">
-      <div className="rf-upload-card">
-        <h2 className="rf-upload-title">Upload Edit</h2>
+  <div className="rf-upload-modal-overlay" onClick={onClose}>
+    <div
+      className="rf-upload-modal"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Header */}
+      <div className="rf-upload-modal-header">
+        <h2 className="rf-upload-title">Create Post</h2>
 
-        {/* PREVIEW */}
+        <button
+          className="rf-upload-close"
+          onClick={onClose}
+        >
+          <i className="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      {/* Body */}
+      <div className="rf-upload-modal-body">
+        {/* Preview */}
         {preview && (
           <div className="rf-upload-preview-wrapper">
             {media?.type.startsWith("video") ? (
-              <video src={preview} controls className="rf-upload-preview" />
+              <video
+                src={preview}
+                controls
+                className="rf-upload-preview"
+              />
             ) : (
-              <img src={preview} alt="preview" className="rf-upload-preview" />
+              <img
+                src={preview}
+                alt="preview"
+                className="rf-upload-preview"
+              />
             )}
           </div>
         )}
 
+        {/* Category */}
         <select
           className="rf-upload-category"
           value={category}
@@ -98,7 +123,7 @@ export default function UploadPost() {
           <option value="Anime Edit">Anime Edit</option>
         </select>
 
-        {/* CAPTION */}
+        {/* Caption */}
         <textarea
           className="rf-upload-caption"
           placeholder="Write a caption..."
@@ -106,9 +131,11 @@ export default function UploadPost() {
           onChange={(e) => setCaption(e.target.value)}
         />
 
-        {/* FILE INPUT */}
+        {/* File */}
         <label className="rf-upload-file-btn">
+          <i className="bi bi-image"></i>
           Select Media
+
           <input
             type="file"
             hidden
@@ -116,16 +143,29 @@ export default function UploadPost() {
             onChange={handleFile}
           />
         </label>
+      </div>
 
-        {/* SUBMIT */}
+      {/* Footer */}
+      <div className="rf-upload-modal-footer">
         <button
           className="rf-upload-submit-btn"
           onClick={handleUpload}
           disabled={loading}
         >
-          {loading ? "Uploading..." : "Upload Post"}
+          {loading ? (
+            <>
+              <span className="rf-upload-spinner"></span>
+              Uploading...
+            </>
+          ) : (
+            <>
+              <i className="bi bi-cloud-upload"></i>
+              Upload Post
+            </>
+          )}
         </button>
       </div>
     </div>
-  );
+  </div>
+);
 }

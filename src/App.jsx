@@ -73,7 +73,7 @@ const App = () => {
               <Route path="notifications" element={<Notifications />} />
               <Route path="users" element={<Users />} />
               <Route path="users/:id" element={<PublicProfile />} />
-              <Route path="upload" element={<UploadPost />} />
+              
 
               <Route
                 path="main/settings/edit-profile"

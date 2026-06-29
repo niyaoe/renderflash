@@ -1,120 +1,256 @@
-.rf-upload-container {
-  width: 100%;
-  /* min-height:100vh; */
+/* ================= MODAL OVERLAY ================= */
+
+.rf-upload-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
-  padding: 30px 15px;
-  /* background:#0f0f0f; */
+  align-items: center;
+  z-index: 99999;
+  padding: 20px;
 }
 
-.rf-upload-card {
+/* ================= MODAL ================= */
+
+.rf-upload-modal {
   width: 100%;
-  max-width: 600px;
-  background: #161616;
-  border: 1px solid #252525;
-  border-radius: 24px;
-  padding: 24px;
+  max-width: 620px;
+  max-height: 90vh;
+
   display: flex;
   flex-direction: column;
-  gap: 18px;
+
+  background: #161616;
+  border: 1px solid #2b2b2b;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* ================= HEADER ================= */
+
+.rf-upload-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 20px;
+
+  border-bottom: 1px solid #2b2b2b;
 }
 
 .rf-upload-title {
+  margin: 0;
   color: white;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 22px;
 }
+
+.rf-upload-close {
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  background: transparent;
+  color: #bbb;
+  
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  transition: .2s;
+}
+
+.rf-upload-close:hover {
+  color: white;
+}
+
+/* ================= BODY ================= */
+
+.rf-upload-modal-body {
+  flex: 1;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  padding: 20px;
+}
+
+/* ================= FOOTER ================= */
+
+.rf-upload-modal-footer {
+  position: sticky;
+  bottom: 0;
+
+  padding: 18px 20px;
+
+  background: #161616;
+  border-top: 1px solid #2b2b2b;
+}
+
+/* ================= BUTTON ================= */
+
+.rf-upload-submit-btn {
+  width: 100%;
+
+  height: 48px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #621eff;
+  color: white;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  transition: .2s;
+}
+
+.rf-upload-submit-btn:hover {
+  background: #7a42ff;
+}
+
+.rf-upload-submit-btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* ================= SPINNER ================= */
+
+.rf-upload-spinner {
+  width: 18px;
+  height: 18px;
+
+  border: 2px solid rgba(255,255,255,.3);
+  border-top: 2px solid white;
+
+  border-radius: 50%;
+
+  animation: rfUploadSpin .7s linear infinite;
+}
+
+@keyframes rfUploadSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= PREVIEW ================= */
 
 .rf-upload-preview-wrapper {
   width: 100%;
-  border-radius: 18px;
+  background: #111;
   overflow: hidden;
-  background: #0d0d0d;
 }
 
 .rf-upload-preview {
   width: 100%;
-  max-height: 500px;
-  object-fit: cover;
+  max-height: 420px;
+  object-fit: contain;
   display: block;
 }
 
+/* ================= INPUTS ================= */
+
+.rf-upload-category,
 .rf-upload-caption {
   width: 100%;
-  min-height: 120px;
-  resize: none;
-  border: none;
-  outline: none;
-  border-radius: 16px;
-  padding: 16px;
   background: #1d1d1d;
+  border: 1px solid #2c2c2c;
   color: white;
-  font-size: 15px;
-  font-family: "Poppins", sans-serif;
+  padding: 12px;
+  font-family: inherit;
+  border-radius: 8px;
 }
 
-.rf-upload-caption::placeholder {
-  color: #888;
+.rf-upload-caption {
+  resize: none;
+  min-height: 120px;
 }
 
 .rf-upload-file-btn {
   width: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
   padding: 12px 18px;
-  background: #262626;
+
+  background: #252525;
   color: white;
-  border-radius: 14px;
+  border-radius: 8px;
+
   cursor: pointer;
-  transition: 0.2s;
-  font-size: 14px;
+
+  transition: .2s;
 }
 
 .rf-upload-file-btn:hover {
-  background: #323232;
+  background: #303030;
 }
 
-.rf-upload-submit-btn {
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 14px;
-  border-radius: 16px;
-  background: #6c2bff;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
+/* ================= MOBILE ================= */
 
-.rf-upload-submit-btn:hover {
-  background: #7c43ff;
-}
+@media (max-width:768px) {
 
-.rf-upload-submit-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
+  .rf-upload-modal-overlay {
 
-@media (max-width: 600px) {
-  .rf-upload-card {
-    padding: 18px;
+    align-items: flex-end;
+    padding: 0;
+
   }
 
-  .rf-upload-title {
-    font-size: 20px;
+  .rf-upload-modal {
+
+    width: 100%;
+    max-width: 100%;
+
+    height: 90vh;
+    max-height: 90vh;
+
+    border-top: 1px solid #2b2b2b;
+
   }
-}
 
-/* =============upload categoryyy============== */
+  .rf-upload-modal-body {
 
-.rf-upload-category {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  outline: none;
-  border-radius: 12px;
-  background: #1d1d1d;
-  color: white;
-  font-size: 14px;
-  font-family: "Poppins", sans-serif;
+    padding: 16px;
+
+    /* avoids conflict with mobile nav */
+    padding-bottom: 100px;
+
+  }
+
+  .rf-upload-modal-footer {
+
+    position: fixed;
+
+    bottom: 70px; /* above your Telegram bottom nav */
+
+    left: 0;
+    right: 0;
+
+    background: #161616;
+
+    padding: 15px;
+
+    border-top: 1px solid #2b2b2b;
+
+    z-index: 10;
+
+  }
+
 }
