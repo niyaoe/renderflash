@@ -81,8 +81,13 @@ export default function Feed() {
   };
 
   if (loading) {
-    return <div className="rf-feed-loading">Loading Posts...</div>;
-  }
+  return (
+    <div className="rf-feed-loading">
+      <div className="rf-loader"></div>
+      <p>Loading Posts...</p>
+    </div>
+  );
+}
 
   return (
     <div className="rf-video-feed">

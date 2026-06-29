@@ -12,6 +12,7 @@
   background: #121212;
   border: 1px solid #262626;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .rf-video-card:hover {
@@ -206,6 +207,8 @@
   .rf-video-card {
     border-left: none;
     border-right: none;
+    border-radius: 0px;
+    
   }
 
   .rf-post-avatar {
@@ -221,5 +224,38 @@
   .rf-comment-box {
     max-width: 100%;
     height: 80vh;
+  }
+}
+
+
+/* ================= LOADING ================= */
+
+.rf-feed-loading {
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  color: #bdbdbd;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.rf-loader {
+  width: 42px;
+  height: 42px;
+  border: 4px solid #2d2d2d;
+  border-top: 4px solid #621eff;
+  border-radius: 50%;
+  animation: rfSpin 0.8s linear infinite;
+}
+
+@keyframes rfSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
