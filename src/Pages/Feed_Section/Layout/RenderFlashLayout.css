@@ -12,6 +12,9 @@
   z-index: 1000;
   background: #111;
   border-bottom: 1px solid #222;
+  /* background: rgba(22, 22, 22, 0.75);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(18px); */
 }
 
 .reddit-header-inner {
@@ -40,6 +43,8 @@
   height: 42px;
   background: #1a1a1a;
   border-radius: 999px;
+
+  background: rgba(22, 22, 22, 0.75);
 
   display: flex;
   align-items: center;
@@ -119,6 +124,7 @@
   min-width: 0;
   max-width: 800px;
   padding: 20px 0;
+  
 }
 
 /* ================= MOBILE NAV ================= */
@@ -129,9 +135,24 @@
 
 /* ================= MOBILE ================= */
 
+.bi-people-fill{
+    display: none;
+  }
+
 @media (max-width: 768px) {
   .reddit-sidebar {
     display: none;
+  }
+  .bi-people-fill{
+    display: block;
+  }
+
+
+  .reddit-header {
+    background: rgba(22, 22, 22, 0.75);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(18px);
+    
   }
 
   .reddit-search {
@@ -142,60 +163,59 @@
     padding-bottom: 80px;
   }
 
-.reddit-mobile-nav {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  .reddit-mobile-nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 
-  position: fixed;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
+    position: fixed;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
 
-  width: calc(100% - 28px);
-  max-width: 420px;
-  height: 64px;
+    width: calc(100% - 28px);
+    max-width: 420px;
+    height: 64px;
 
-  background: rgba(22, 22, 22, 0.75);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(18px);
+    background: rgba(22, 22, 22, 0.75);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(18px);
 
-  border: 1px solid #2a2a2a;
-  border-radius: 22px;
+    border: 1px solid #2a2a2a;
+    border-radius: 22px;
 
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, .45),
-    inset 0 1px 0 rgba(255,255,255,.04);
+    box-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
-  z-index: 999;
+    z-index: 999;
+  }
+
+  .reddit-mobile-nav a {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #a5a5a5;
+    font-size: 24px;
+
+    border-radius: 14px;
+    transition: 0.25s;
+  }
+
+  .reddit-mobile-nav a:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .reddit-mobile-nav a.active {
+    background: #621eff;
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(98, 30, 255, 0.45);
+  }
 }
-
-.reddit-mobile-nav a {
-  width: 48px;
-  height: 48px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #a5a5a5;
-  font-size: 24px;
-
-  border-radius: 14px;
-  transition: .25s;
-}
-
-.reddit-mobile-nav a:hover {
-  background: rgba(255,255,255,.05);
-}
-
-.reddit-mobile-nav a.active {
-  background: #621eff;
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(98, 30, 255, .45);
-}
-}
-
 
 /* ================= RIGHT SIDEBAR ================= */
 
@@ -279,6 +299,9 @@
 @media (max-width: 1200px) {
   .reddit-rightbar {
     display: none;
+  }
+  .bi-people-fill{
+    display: block;
   }
 }
 

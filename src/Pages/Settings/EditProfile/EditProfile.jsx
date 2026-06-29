@@ -293,7 +293,7 @@ export default function EditProfile() {
 
   return (
     <div className="rf-account-settings">
-      <h3 className="rf-settings-title">Edit Profile</h3>
+      {/* <h3 className="rf-settings-title">Edit Profile</h3> */}
 
       {/* PROFILE PIC */}
       <div className="rf-profile-pic-section">

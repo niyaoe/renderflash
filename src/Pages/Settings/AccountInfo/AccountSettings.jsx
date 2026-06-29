@@ -34,7 +34,7 @@ export default function AccountSettings() {
 
   return (
     <div className="rf-account-settings">
-      <h3 className="rf-settings-title">Account Settings</h3>
+      {/* <h3 className="rf-settings-title">Account Settings</h3> */}
 
       <form className="rf-settings-form" onSubmit={handleSubmit}>
         {/* EMAIL */}
