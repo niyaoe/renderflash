@@ -238,13 +238,17 @@
 
 @media (max-width: 768px) {
   .rf-video-feed {
-    gap: 10px;
+    gap: 0px;
   }
 
   .rf-video-card {
     border-left: none;
     border-right: none;
     border-radius: 0px;
+    border-top: none;
+    border-bottom: none;
+
+
     
   }
 
