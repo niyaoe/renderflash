@@ -9,6 +9,7 @@ import Users from "../../Users/Users";
 import UsersDropdown from "./RightBar/UsersDropdown";
 import { useState } from "react";
 import UploadPost from "../UploadPost/UploadPost";
+import logo from "../../../assets/logo/RENDERFLASH@3x.png"
 
 export default function RenderFlashLayout() {
   const [showUploadModal, setShowUploadModal] = useState(false);
@@ -20,6 +21,7 @@ export default function RenderFlashLayout() {
         <div className="reddit-header-inner">
           <div className="rf-feed-logo">
             renderFlash<span>.io</span>
+            {/* <img className="rf-new-logo"  src={logo} alt="" /> */}
           </div>
 
           <div className="reddit-search">
@@ -32,7 +34,7 @@ export default function RenderFlashLayout() {
               <i className="bi bi-bell-fill"></i>
             </NavLink>
             <NavLink to="users">
-              <i class="bi bi-people-fill"></i>
+              <i className="bi bi-people-fill"></i>
             </NavLink>
 
             < NavLink onClick={() => setShowUploadModal(true)}>
