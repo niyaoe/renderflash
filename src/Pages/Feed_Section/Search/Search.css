@@ -20,3 +20,9 @@
   border: 1px solid #222;
   color: #bbb;
 }
+
+@media (max-width: 768px) {
+  .rf-search-section {
+    padding: 15px 0px;
+  }
+}
