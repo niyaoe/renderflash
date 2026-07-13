@@ -9,7 +9,7 @@ import Users from "../../Users/Users";
 import UsersDropdown from "./RightBar/UsersDropdown";
 import { useState } from "react";
 import UploadPost from "../UploadPost/UploadPost";
-import logo from "../../../assets/logo/RENDERFLASH@3x.png"
+import logo from "../../../assets/logo/Artboard 1@3x.png"
 
 export default function RenderFlashLayout() {
   const [showUploadModal, setShowUploadModal] = useState(false);
@@ -20,8 +20,8 @@ export default function RenderFlashLayout() {
       <header className="reddit-header">
         <div className="reddit-header-inner">
           <div className="rf-feed-logo">
-            renderFlash<span>.io</span>
-            {/* <img className="rf-new-logo"  src={logo} alt="" /> */}
+            {/* renderFlash<span>.io</span> */}
+            <img className="rf-new-logo"  src={logo} alt="" />
           </div>
 
           <div className="reddit-search">
