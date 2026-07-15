@@ -59,12 +59,12 @@ const SignUpPage = () => {
 
   return (
     <div className="rf-login-wrapper">
-      {/* <TargetCursor
+      <TargetCursor
         spinDuration={2}
         hideDefaultCursor
         parallaxOn
         hoverDuration={0.2}
-      /> */}
+      />
 
       <div className="rf-login-container">
         <div className="rf-login-card">

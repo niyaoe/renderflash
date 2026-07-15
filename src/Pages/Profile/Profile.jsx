@@ -66,12 +66,12 @@ const Profile = () => {
                     <span className="stat-label">Fans</span>
                   </div>
 
-                  {/* <div className="stat">
+                  <div className="stat">
                     <span className="stat-number">
                       {user.following?.length || 0}
                     </span>
                     <span className="stat-label">Following</span>
-                  </div> */}
+                  </div>
                 </div>
               </div>
             </div>

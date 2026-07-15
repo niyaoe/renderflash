@@ -59,7 +59,13 @@ const PublicProfile = () => {
     }
   };
 
-  if (!user) return <p>Loading...</p>;
+  if (!user)
+    return (
+      <div className="rf-feed-loading">
+        <div className="rf-loader"></div>
+        <p>Loading...</p>
+      </div>
+    );
 
   return (
     <div>
