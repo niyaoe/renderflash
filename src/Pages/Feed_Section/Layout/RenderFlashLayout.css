@@ -77,7 +77,13 @@
 
 .reddit-actions {
   display: flex;
-  gap: 18px;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .reddit-actions {
+    gap: 18px;
+  }
 }
 
 .reddit-actions a {

@@ -9,7 +9,7 @@ import Users from "../../Users/Users";
 import UsersDropdown from "./RightBar/UsersDropdown";
 import { useState } from "react";
 import UploadPost from "../UploadPost/UploadPost";
-import logo from "../../../assets/logo/Artboard 1@3x.png"
+import logo from "../../../assets/logo/Artboard 1@3x hello.png"
 
 export default function RenderFlashLayout() {
   const [showUploadModal, setShowUploadModal] = useState(false);
