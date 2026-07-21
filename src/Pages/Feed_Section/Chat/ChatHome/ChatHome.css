@@ -41,3 +41,9 @@
   color: #aaa;
   font-size: 13px;
 }
+
+@media (max-width: 768px) {
+  .rf-chat-home {
+    padding: 15px 12px;
+  }
+}

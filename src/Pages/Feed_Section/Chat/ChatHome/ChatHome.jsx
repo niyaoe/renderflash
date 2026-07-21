@@ -8,7 +8,8 @@ export default function ChatHome() {
   return (
     <div className="rf-chat-home">
 
-      <h2 className="rf-chat-home-title">Community</h2>
+      {/* <h2 className="rf-chat-home-title">Chat Home</h2> */}
+      
 
       <div className="rf-chat-home-options">
 
