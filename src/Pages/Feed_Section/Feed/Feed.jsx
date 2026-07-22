@@ -5,6 +5,15 @@ import axios from "axios";
 import { API_URL } from "../../../utils/api";
 
 export default function Feed() {
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   const [activePost, setActivePost] = useState(null);
   const [comments, setComments] = useState({});
   const [newComment, setNewComment] = useState("");
@@ -21,7 +30,7 @@ export default function Feed() {
 
       const formattedPosts = res.data.map((post) => ({
         ...post,
-        liked: false,
+        liked: post.likes?.includes(currentUser._id),
         saved: false,
       }));
 
@@ -33,19 +42,31 @@ export default function Feed() {
     }
   };
 
-  const handleLike = (postId) => {
-    setFeedPosts((prev) =>
-      prev.map((post) =>
-        post._id === postId
-          ? {
-              ...post,
-              liked: !post.liked,
-            }
-          : post,
-      ),
-    );
-  };
+  const handleLike = async (postId) => {
+    try {
+      const res = await axios.post(
+        `${API_URL}/api/posts/${postId}/like`,
+        {},
+        config,
+      );
 
+      setFeedPosts((prev) =>
+        prev.map((post) => {
+          if (post._id !== postId) return post;
+
+          return {
+            ...post,
+            liked: res.data.liked,
+            likes: res.data.liked
+              ? [...post.likes, currentUser._id]
+              : post.likes.filter((id) => id !== currentUser._id),
+          };
+        }),
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const handleSave = (postId) => {
     setFeedPosts((prev) =>
       prev.map((post) =>
@@ -59,35 +80,51 @@ export default function Feed() {
     );
   };
 
-  const handleComment = (postId) => {
-    setActivePost(postId);
+  const handleComment = (post) => {
+    setActivePost(post);
   };
 
-  const addComment = () => {
+  const addComment = async () => {
     if (!newComment.trim()) return;
 
-    const commentObj = {
-      id: Date.now(),
-      user: "@you",
-      text: newComment,
-    };
+    try {
+      const res = await axios.post(
+        `${API_URL}/api/posts/${activePost._id}/comment`,
+        {
+          text: newComment,
+        },
+        config,
+      );
 
-    setComments((prev) => ({
-      ...prev,
-      [activePost]: [...(prev[activePost] || []), commentObj],
-    }));
+      setFeedPosts((prev) =>
+        prev.map((post) =>
+          post._id === activePost._id
+            ? {
+                ...post,
+                comments: res.data,
+              }
+            : post,
+        ),
+      );
 
-    setNewComment("");
+      setActivePost((prev) => ({
+        ...prev,
+        comments: res.data,
+      }));
+
+      setNewComment("");
+    } catch (err) {
+      console.log(err);
+    }
   };
-
   if (loading) {
-  return (
-    <div className="rf-feed-loading">
-      <div className="rf-loader"></div>
-      <p>Loading Posts...</p>
-    </div>
-  );
-}
+    return (
+      <div className="rf-feed-loading">
+        <div className="rf-loader"></div>
+        <p>Loading Posts...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="rf-video-feed">
@@ -114,7 +151,7 @@ export default function Feed() {
 
           {/* MEDIA */}
           {post.mediaType === "video" ? (
-            <AutoPlayVideo src={post.media} />
+            <AutoPlayVideo src={post.media} postId={post._id} />
           ) : (
             <img
               src={post.media}
@@ -134,16 +171,16 @@ export default function Feed() {
                   className={`bi ${post.liked ? "bi-heart-fill" : "bi-heart"}`}
                 ></i>
 
-                <span>{(post.likes?.length || 0) + (post.liked ? 1 : 0)}</span>
+                <span>{post.likes?.length || 0}</span>
               </button>
 
               <button
                 className="rf-action-btn"
-                onClick={() => handleComment(post._id)}
+                onClick={() => handleComment(post)}
               >
                 <i className="bi bi-chat"></i>
 
-                <span>{post.commentsCount || 0}</span>
+                <span>{post.comments?.length || 0}</span>
               </button>
 
               <button
@@ -155,6 +192,10 @@ export default function Feed() {
                     post.saved ? "bi-bookmark-fill" : "bi-bookmark"
                   }`}
                 ></i>
+              </button>
+              <button className="rf-action-btn">
+                <i className="bi bi-eye"></i>
+                <span>{post.views || 0}</span>
               </button>
             </div>
           </div>
@@ -184,9 +225,9 @@ export default function Feed() {
             </div>
 
             <div className="rf-comment-list">
-              {(comments[activePost] || []).map((c) => (
-                <div key={c.id} className="rf-comment-item">
-                  <b>{c.user}</b>
+              {(activePost?.comments || []).map((c) => (
+                <div key={c._id} className="rf-comment-item">
+                  <b>{c.username}</b>
                   <p>{c.text}</p>
                 </div>
               ))}
