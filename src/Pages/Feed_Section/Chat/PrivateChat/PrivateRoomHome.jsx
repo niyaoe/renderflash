@@ -87,7 +87,7 @@ export default function PrivateRoomHome() {
       {/* =========================
          ROOM LIST
       ========================== */}
-      <div className="rf-room-list">
+      {/* <div className="rf-room-list">
 
         <h3 className="rf-room-list-title">Available Rooms</h3>
 
@@ -108,7 +108,7 @@ export default function PrivateRoomHome() {
           </div>
         ))}
 
-      </div>
+      </div> */}
 
     </div>
   );
