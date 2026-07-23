@@ -17,28 +17,57 @@ export default function Feed() {
   const [activePost, setActivePost] = useState(null);
   const [comments, setComments] = useState({});
   const [newComment, setNewComment] = useState("");
+
   const [feedPosts, setFeedPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
+  const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [page]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (loading || !hasMore) return;
+
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 300
+      ) {
+        setPage((prev) => prev + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading, hasMore]);
 
   const fetchPosts = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/api/posts`);
+    if (loading || !hasMore) return;
 
-      const formattedPosts = res.data.map((post) => ({
+    try {
+      setLoading(true);
+
+      const res = await axios.get(`${API_URL}/api/posts?page=${page}&limit=10`);
+
+      const formattedPosts = res.data.posts.map((post) => ({
         ...post,
         liked: post.likes?.includes(currentUser._id),
         saved: false,
       }));
 
-      setFeedPosts(formattedPosts);
+      setFeedPosts((prev) => [...prev, ...formattedPosts]);
+
+      setHasMore(res.data.hasMore);
     } catch (err) {
       console.log(err);
     } finally {
       setLoading(false);
+      setInitialLoading(false);
     }
   };
 
@@ -117,7 +146,7 @@ export default function Feed() {
       console.log(err);
     }
   };
-  if (loading) {
+  if (initialLoading) {
     return (
       <div className="rf-feed-loading">
         <div className="rf-loader"></div>
@@ -247,6 +276,16 @@ export default function Feed() {
             </div>
           </div>
         </div>
+      )}
+
+      {loading && (
+        <div className="rf-feed-loading">
+          <div className="rf-loader"></div>
+        </div>
+      )}
+
+      {!hasMore && feedPosts.length > 0 && (
+        <div className="rf-feed-end">🎉 You're all caught up.</div>
       )}
     </div>
   );
