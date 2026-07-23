@@ -14,12 +14,20 @@ export default function UsersDropdown() {
     fetchUsers();
   }, []);
 
-  const fetchUsers = async () => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchUsers(search);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  const fetchUsers = async (searchText = "") => {
     try {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        `${API_URL}/api/user/all`,
+        `${API_URL}/api/user/all?page=1&limit=20&search=${encodeURIComponent(searchText)}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -27,26 +35,14 @@ export default function UsersDropdown() {
         }
       );
 
-      setUsers(res.data);
+      setUsers(res.data.users);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const filteredUsers = users.filter((user) => {
-    return (
-      user.username
-        ?.toLowerCase()
-        .includes(search.toLowerCase()) ||
-      user.name
-        ?.toLowerCase()
-        .includes(search.toLowerCase())
-    );
-  });
-
   return (
     <div className="rf-dropdown-users">
-
       <input
         type="text"
         placeholder="Search users..."
@@ -56,18 +52,15 @@ export default function UsersDropdown() {
       />
 
       <div className="rf-dropdown-list">
-
-        {filteredUsers.slice(0, 20).map((user) => (
+        {users.map((user) => (
           <div
             key={user._id}
             className="rf-dropdown-user"
-            onClick={() =>
-              navigate(`/main/users/${user._id}`)
-            }
+            onClick={() => navigate(`/main/users/${user._id}`)}
           >
             <img
               src={user.avatar}
-              alt=""
+              alt={user.username}
               className="rf-dropdown-avatar"
             />
 
@@ -83,8 +76,12 @@ export default function UsersDropdown() {
           </div>
         ))}
 
+        {users.length === 0 && (
+          <div className="rf-dropdown-empty">
+            No users found
+          </div>
+        )}
       </div>
-
     </div>
   );
 }

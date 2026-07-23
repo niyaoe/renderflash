@@ -8,40 +8,111 @@ export default function Users() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
 
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
+  const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
+
   const navigate = useNavigate();
 
+  /* ---------------- INITIAL LOAD ---------------- */
+
   useEffect(() => {
-    fetchUsers();
+    fetchUsers(1, "");
   }, []);
 
-  const fetchUsers = async () => {
+  /* ---------------- SEARCH ---------------- */
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setUsers([]);
+      setPage(1);
+      setHasMore(true);
+
+      fetchUsers(1, search);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  /* ---------------- PAGINATION ---------------- */
+
+  useEffect(() => {
+    if (page === 1) return;
+
+    fetchUsers(page, search);
+  }, [page]);
+
+  /* ---------------- SCROLL ---------------- */
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (loading || !hasMore) return;
+
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 250
+      ) {
+        setPage((prev) => prev + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading, hasMore]);
+
+  /* ---------------- FETCH USERS ---------------- */
+
+  const fetchUsers = async (pageNumber = 1, searchText = "") => {
+    if (loading || (!hasMore && pageNumber !== 1)) return;
+
     try {
+      setLoading(true);
+
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(`${API_URL}/api/user/all`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        `${API_URL}/api/user/all?page=${pageNumber}&limit=20&search=${encodeURIComponent(searchText)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      setUsers(res.data);
+      if (pageNumber === 1) {
+        setUsers(res.data.users);
+      } else {
+        setUsers((prev) => [...prev, ...res.data.users]);
+      }
+
+      setHasMore(res.data.hasMore);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
+      setInitialLoading(false);
     }
   };
 
-  const filteredUsers = users.filter((user) => {
+  /* ---------------- LOADER ---------------- */
+
+  if (initialLoading) {
     return (
-      user.username?.toLowerCase().includes(search.toLowerCase()) ||
-      user.name?.toLowerCase().includes(search.toLowerCase())
+      <div className="rf-feed-loading">
+        <div className="rf-loader"></div>
+        <p>Loading users...</p>
+      </div>
     );
-  });
+  }
+
+  /* ---------------- UI ---------------- */
 
   return (
     <div className="rf-users-page">
       <div className="rf-users-header">
-        {/* <h2 className="rf-users-title">Discover Users</h2> */}
-
         <input
           type="text"
           placeholder="Search users..."
@@ -52,7 +123,7 @@ export default function Users() {
       </div>
 
       <div className="rf-users-grid">
-        {filteredUsers.map((user) => (
+        {users.map((user) => (
           <div
             key={user._id}
             className="rf-user-card"
@@ -65,15 +136,31 @@ export default function Users() {
             />
 
             <div className="rf-user-info">
-              <h4 className="rf-user-name">{user.name || user.username}</h4>
+              <h4 className="rf-user-name">
+                {user.name || user.username}
+              </h4>
 
-              <p className="rf-user-username">{user.username}</p>
+              <p className="rf-user-username">
+                @{user.username}
+              </p>
             </div>
 
             <i className="bi bi-chevron-right rf-user-arrow"></i>
           </div>
         ))}
       </div>
+
+      {loading && (
+        <div className="rf-feed-loading">
+          <div className="rf-loader"></div>
+        </div>
+      )}
+
+      {!hasMore && users.length > 0 && (
+        <div className="rf-feed-end">
+          No more users
+        </div>
+      )}
     </div>
   );
 }

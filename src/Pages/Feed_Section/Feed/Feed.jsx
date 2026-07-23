@@ -26,7 +26,7 @@ export default function Feed() {
   const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts(page);
   }, [page]);
 
   useEffect(() => {
@@ -46,13 +46,16 @@ export default function Feed() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loading, hasMore]);
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (pageNumber = page) => {
+    console.log("Fetching page", page);
     if (loading || !hasMore) return;
 
     try {
       setLoading(true);
 
-      const res = await axios.get(`${API_URL}/api/posts?page=${page}&limit=10`);
+      const res = await axios.get(
+        `${API_URL}/api/posts?page=${pageNumber}&limit=10`,
+      );
 
       const formattedPosts = res.data.posts.map((post) => ({
         ...post,
@@ -60,7 +63,15 @@ export default function Feed() {
         saved: false,
       }));
 
-      setFeedPosts((prev) => [...prev, ...formattedPosts]);
+      setFeedPosts((prev) => {
+        const map = new Map();
+
+        [...prev, ...formattedPosts].forEach((post) => {
+          map.set(post._id, post);
+        });
+
+        return [...map.values()];
+      });
 
       setHasMore(res.data.hasMore);
     } catch (err) {
@@ -154,6 +165,8 @@ export default function Feed() {
       </div>
     );
   }
+
+  console.log(feedPosts.map((post) => post._id));
 
   return (
     <div className="rf-video-feed">
