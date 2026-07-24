@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { Link } from "react-router-dom";
-import ProfileTabs from "./ProfileTabs/ProfileTabs";
+
 import axios from "axios";
 import { API_URL } from "../../utils/api" 
 
@@ -109,7 +109,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <ProfileTabs />
+      
     </div>
   );
 };

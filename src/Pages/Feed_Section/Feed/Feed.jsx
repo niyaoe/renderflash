@@ -3,10 +3,12 @@ import "./Feed.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../../../utils/api";
+import { useNavigate } from "react-router-dom";
 
 export default function Feed() {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const config = {
     headers: {
@@ -47,7 +49,7 @@ export default function Feed() {
   }, [loading, hasMore]);
 
   const fetchPosts = async (pageNumber = page) => {
-    console.log("Fetching page", page);
+    // console.log("Fetching page", page);
     if (loading || !hasMore) return;
 
     try {
@@ -62,6 +64,8 @@ export default function Feed() {
         liked: post.likes?.includes(currentUser._id),
         saved: false,
       }));
+
+      // console.log("formtted : ", formattedPosts);
 
       setFeedPosts((prev) => {
         const map = new Map();
@@ -166,7 +170,7 @@ export default function Feed() {
     );
   }
 
-  console.log(feedPosts.map((post) => post._id));
+  // console.log(feedPosts.map((post) => post._id));
 
   return (
     <div className="rf-video-feed">
@@ -181,7 +185,7 @@ export default function Feed() {
                 className="rf-post-avatar"
               />
 
-              <div>
+              <div onClick={() => navigate(`/main/users/${post.user}`)}>
                 <h4>{post.username}</h4>
               </div>
             </div>
