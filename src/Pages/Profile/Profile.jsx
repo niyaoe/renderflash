@@ -3,10 +3,16 @@ import "./Profile.css";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
-import { API_URL } from "../../utils/api" 
+import { API_URL } from "../../utils/api";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
+
+  const [activeTab, setActiveTab] = useState("posts");
+
+  const [posts, setPosts] = useState([]);
+
+  const [likedPosts, setLikedPosts] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,13 +34,32 @@ const Profile = () => {
     fetchUser();
   }, []);
 
-  if (!user) return (
-    <div className="rf-feed-loading">
-      <div className="rf-loader"></div>
-      <p>Loading...</p>
-    </div>
-  );
+  const fetchPosts = async () => {
+    const res = await axios.get(`${API_URL}/api/posts/user/${user._id}`);
 
+    setPosts(res.data);
+  };
+
+  const fetchLikedPosts = async () => {
+    const res = await axios.get(`${API_URL}/api/posts/liked/${user._id}`);
+
+    setLikedPosts(res.data);
+  };
+
+  useEffect(() => {
+    if (user) {
+      fetchPosts();
+      fetchLikedPosts();
+    }
+  }, [user]);
+
+  if (!user)
+    return (
+      <div className="rf-feed-loading">
+        <div className="rf-loader"></div>
+        <p>Loading...</p>
+      </div>
+    );
 
   return (
     <div>
@@ -78,10 +103,7 @@ const Profile = () => {
 
             {/* Right icons */}
             <div className="profile-right">
-              <Link
-                to="/main/settings"
-                className="profile-settings-link"
-              >
+              <Link to="/main/settings" className="profile-settings-link">
                 <i className="bi bi-gear-fill"></i>
               </Link>
 
@@ -101,15 +123,56 @@ const Profile = () => {
 
             {/* softwares */}
             {user.softwares?.map((soft, index) => (
-              <p className="software-p" key={index}>{soft}</p>
+              <p className="software-p" key={index}>
+                {soft}
+              </p>
             ))}
 
             {/* country */}
           </div>
         </div>
       </div>
+      <div className="rf-profile-tabs">
+        <button
+          className={activeTab === "posts" ? "active" : ""}
+          onClick={() => setActiveTab("posts")}
+        >
+          {/* <i className="bi bi-grid-3x3-gap-fill"></i> */}
+          Posts
+        </button>
 
+        <button
+          className={activeTab === "liked" ? "active" : ""}
+          onClick={() => setActiveTab("liked")}
+        >
+          {/* <i className="bi bi-heart-fill"></i> */}
+          Liked
+        </button>
+      </div>
       
+      <div className="rf-profile-grid">
+        {(activeTab === "posts" ? posts : likedPosts).map((post) => (
+          <div key={post._id} className="rf-profile-item">
+            {post.mediaType === "image" ? (
+              <img src={post.media} alt="" />
+            ) : (
+              <video src={post.media} muted />
+            )}
+
+            <div className="rf-profile-overlay">
+              <span>
+                <i className="bi bi-heart-fill"></i>
+                {post.likes.length}
+              </span>
+
+              <span>
+                <i className="bi bi-chat-fill"></i>
+                {post.comments.length}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
