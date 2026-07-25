@@ -53,6 +53,9 @@ const Profile = () => {
     }
   }, [user]);
 
+  // console.log("posts :",posts);
+  
+
   if (!user)
     return (
       <div className="rf-feed-loading">
@@ -80,7 +83,7 @@ const Profile = () => {
 
                 <div className="profile-stats">
                   <div className="stat">
-                    <span className="stat-number">5</span>
+                    <span className="stat-number">{posts.length || 0}</span>
                     <span className="stat-label">Edits</span>
                   </div>
 
@@ -138,7 +141,7 @@ const Profile = () => {
           onClick={() => setActiveTab("posts")}
         >
           {/* <i className="bi bi-grid-3x3-gap-fill"></i> */}
-          Posts
+          Edits
         </button>
 
         <button
