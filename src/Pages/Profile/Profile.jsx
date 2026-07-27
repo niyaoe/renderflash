@@ -14,6 +14,12 @@ const Profile = () => {
 
   const [likedPosts, setLikedPosts] = useState([]);
 
+  const [totalEdits, setTotalEdits] = useState(0);
+
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -34,27 +40,79 @@ const Profile = () => {
     fetchUser();
   }, []);
 
-  const fetchPosts = async () => {
-    const res = await axios.get(`${API_URL}/api/posts/user/${user._id}`);
+  const fetchPosts = async (pageNumber = page) => {
+    if (loading || !hasMore) return;
 
-    setPosts(res.data);
+    try {
+      setLoading(true);
+
+      const res = await axios.get(
+        `${API_URL}/api/posts/user/${user._id}?page=${pageNumber}&limit=12`,
+      );
+
+      if (pageNumber === 1) {
+        setPosts(res.data.posts);
+      } else {
+        setPosts((prev) => {
+          const map = new Map();
+
+          [...prev, ...res.data.posts].forEach((post) => {
+            map.set(post._id, post);
+          });
+
+          return [...map.values()];
+        });
+      }
+
+      setHasMore(res.data.hasMore);
+      setTotalEdits(res.data.totalEdits);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const fetchLikedPosts = async () => {
-    const res = await axios.get(`${API_URL}/api/posts/liked/${user._id}`);
+    try {
+      const res = await axios.get(`${API_URL}/api/posts/liked/${user._id}`);
 
-    setLikedPosts(res.data);
+      setLikedPosts(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
+    const handleScroll = () => {
+      if (loading || !hasMore || activeTab !== "posts") return;
+
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 250
+      ) {
+        setPage((prev) => prev + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading, hasMore, activeTab]);
+
+  useEffect(() => {
     if (user) {
-      fetchPosts();
+      fetchPosts(page);
+    }
+  }, [user, page]);
+
+  useEffect(() => {
+    if (user) {
       fetchLikedPosts();
     }
   }, [user]);
 
   // console.log("posts :",posts);
-  
 
   if (!user)
     return (
@@ -83,7 +141,7 @@ const Profile = () => {
 
                 <div className="profile-stats">
                   <div className="stat">
-                    <span className="stat-number">{posts.length || 0}</span>
+                    <span className="stat-number">{totalEdits}</span>
                     <span className="stat-label">Edits</span>
                   </div>
 
@@ -152,7 +210,7 @@ const Profile = () => {
           Liked
         </button>
       </div>
-      
+
       <div className="rf-profile-grid">
         {(activeTab === "posts" ? posts : likedPosts).map((post) => (
           <div key={post._id} className="rf-profile-item">
@@ -176,6 +234,15 @@ const Profile = () => {
           </div>
         ))}
       </div>
+      {loading && (
+        <div className="rf-feed-loading">
+          <div className="rf-loader"></div>
+        </div>
+      )}
+
+      {!hasMore && activeTab === "posts" && posts.length > 0 && (
+        <div className="rf-feed-end">No more edits</div>
+      )}
     </div>
   );
 };
