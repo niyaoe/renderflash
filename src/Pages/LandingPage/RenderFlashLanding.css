@@ -1,228 +1,973 @@
-/* ===== RESET ===== */
+
+/* =========================================================
+   RENDERFLASH LANDING PAGE
+   ========================================================= */
+
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-.rf-wrapper {
-  /* font-family: "Segoe UI", sans-serif; */
-  background-color: black;
-  color: white;
-  overflow-x: hidden;
-}
-
-/* ===== NAVBAR ===== */
-.rf-header {
-  position: absolute;
-  width: 100%;
-  z-index: 20;
-}
-
-.rf-navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-}
-
-.rf-logo {
-  font-size: 20px;
-  font-weight: 700;
-  color: #621eff;
-  letter-spacing: 1px;
-}
-
-.rf-nav-right {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.rf-lang-wrapper {
+.rf-landing {
   position: relative;
-  display: inline-block;
+  width: 100%;
+  min-height: 100vh;
+
+  background: #050505;
+  color: #ffffff;
+
+  overflow: hidden;
+
+  font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
-.rf-language {
-  padding: 7px 32px 7px 12px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 4px;
-  font-size: 13px;
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.rf-landing-header {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 50;
+}
+
+
+.rf-landing-navbar {
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 26px 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.rf-landing-logo {
+  color: #ffffff;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+
   cursor: pointer;
 
+  transition: 0.25s ease;
+}
+
+.rf-landing-logo:hover {
+  color: #621eff;
+}
+
+
+/* =========================================================
+   NAV RIGHT
+   ========================================================= */
+
+.rf-landing-nav-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+
+/* =========================
+   LANGUAGE SELECTOR
+========================= */
+
+.rf-language-container {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+
+/* SELECT */
+
+.rf-language-select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  transition: all 0.25s ease;
-}
+  height: 40px;
 
-/* custom arrow */
-.rf-lang-wrapper::after {
-  content: "▾";
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgb(255, 255, 255);
-  pointer-events: none;
-  font-size: 12px;
-}
+  min-width: 105px;
 
-.rf-language:hover {
-  border-color: white;
-}
+  padding: 0 34px 0 14px;
 
-.rf-language option {
-  background: #111111;
-  color: white;
-  
-}
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
 
-.rf-signin-btn {
-  background-color: #621eff;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 12px;
+  background: rgba(255, 255, 255, 0.04);
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  line-height: 40px;
+
+  outline: none;
+
   cursor: pointer;
-  transition: 0.3s;
-  text-decoration: none;
+
+  transition: 0.25s ease;
 }
 
-.rf-signin-btn:hover {
-  background-color: #621effcc;
+
+/* HOVER */
+
+.rf-language-select:hover {
+  border-color: rgba(98, 30, 255, 0.6);
+
+  background: rgba(98, 30, 255, 0.08);
 }
 
-/* ===== HERO ===== */
-.rf-hero {
-  position: relative;
-  min-height: 100vh;
-  padding: 100px 20px 60px;
-  background: #101229;
-  /* background: url("../../assets/icons&images/Cover/cover.png") */
-    /* no-repeat center center/cover; */
+
+/* FOCUS */
+
+.rf-language-select:focus {
+  border-color: #621eff;
+}
+
+
+/* OPTIONS */
+
+.rf-language-select option {
+  background: #111111;
+  color: #ffffff;
+}
+
+
+/* =========================
+   DROPDOWN ARROW
+========================= */
+
+.rf-language-icon {
+  position: absolute;
+
+  right: 12px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #999;
+
+  font-size: 10px;
+
+  pointer-events: none;
+
+  line-height: 1;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .rf-language-container {
+    flex-shrink: 0;
+  }
+
+  .rf-language-select {
+    width: 100px;
+
+    min-width: 100px;
+
+    height: 36px;
+
+    padding: 0 30px 0 10px;
+
+    font-size: 13px;
+
+    line-height: 36px;
+  }
+
+  .rf-language-icon {
+    right: 9px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 9px;
+  }
+}
+
+
+/* =========================
+   VERY SMALL MOBILE
+========================= */
+
+@media (max-width: 360px) {
+
+  .rf-language-select {
+    width: 92px;
+
+    min-width: 92px;
+
+    height: 34px;
+
+    padding-left: 8px;
+    padding-right: 27px;
+
+    font-size: 10px;
+  }
+
+  .rf-language-icon {
+    right: 8px;
+
+    font-size: 8px;
+  }
+}
+
+
+
+
+/* =========================================================
+   SIGN IN
+   ========================================================= */
+
+.rf-landing-signin {
+  height: 40px;
+
+  padding: 0 17px;
+
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border: 1px solid rgba(98, 30, 255, 0.5);
+  border-radius: 8px;
+
+  background: rgba(98, 30, 255, 0.12);
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition: 0.25s ease;
+}
+
+
+.rf-landing-signin i {
+  font-size: 12px;
+
+  transition: transform 0.25s ease;
+}
+
+
+.rf-landing-signin:hover {
+  background: #621eff;
+
+  border-color: #621eff;
+
+  transform: translateY(-1px);
+}
+
+
+.rf-landing-signin:hover i {
+  transform: translate(2px, -2px);
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.rf-landing-main {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(98, 30, 255, 0.13),
+      transparent 35%
+    ),
+    #050505;
+}
+
+
+/* =========================================================
+   BACKGROUND GRID
+   ========================================================= */
+
+.rf-landing-grid {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.35;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  mask-image: radial-gradient(
+    circle at center,
+    black 0%,
+    transparent 75%
+  );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   GLOW
+   ========================================================= */
+
+.rf-landing-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(100px);
+
+  pointer-events: none;
+}
+
+
+.rf-glow-one {
+  width: 420px;
+  height: 420px;
+
+  top: 10%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background: rgba(98, 30, 255, 0.12);
+}
+
+
+.rf-glow-two {
+  width: 250px;
+  height: 250px;
+
+  bottom: -100px;
+  right: 10%;
+
+  background: rgba(98, 30, 255, 0.08);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.rf-landing-hero {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+  max-width: 900px;
+
+  padding: 120px 30px 100px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
   text-align: center;
 }
 
-.rf-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.85),
-    rgba(0, 0, 0, 0.6),
-    rgba(0, 0, 0, 0.9)
-  );
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.rf-hero-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 8px 14px;
+
+  margin-bottom: 28px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 100px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: #aaa;
+
+  font-size: 12px;
+
+  letter-spacing: 0.2px;
+
+  backdrop-filter: blur(10px);
+
+  cursor: default;
 }
 
-.rf-hero-content {
-  position: relative;
-  max-width: 650px;
-  width: 100%;
-  z-index: 5;
+
+.rf-status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #621eff;
+
+  box-shadow:
+    0 0 10px rgba(98, 30, 255, 0.8);
 }
 
-/* TEXT */
-.rf-title {
-  font-size: 40px;
-  font-weight: 800;
-  margin-bottom: 18px;
-  line-height: 1.2;
-}
 
-.rf-subtitle {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
+/* =========================================================
+   TITLE
+   ========================================================= */
 
-.rf-desc {
-  font-size: 14px;
-  margin-bottom: 22px;
-}
-
-/* INPUT GROUP (STACKED FOR MOBILE) */
-/* .rf-input-group {
+.rf-gradient-title {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-.rf-email-input {
-  padding: 14px;
-  font-size: 15px;
-  border-radius: 4px;
-  border: none;
-  outline: none;
+  justify-content: center;
+
   width: 100%;
-} */
-
-/* .rf-get-started {
-  padding: 14px;
-  font-size: 15px;
-  background-color: #621eff;
-  border: none;
-  color: white;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
-.rf-get-started:hover {
-  background-color: #cc0000;
-} */
 
-/* ===== TABLET ===== */
-@media (min-width: 768px) {
-  .rf-logo {
-    font-size: 26px;
-  }
+.rf-landing-title {
+  margin: 0;
 
-  .rf-title {
-    font-size: 42px;
-  }
+  max-width: 850px;
 
-  .rf-subtitle {
-    font-size: 20px;
-  }
+  font-size: clamp(48px, 8vw, 92px);
 
-  .rf-desc {
-    font-size: 16px;
-  }
+  line-height: 0.98;
 
-  .rf-input-group {
-    flex-direction: row;
-  }
+  font-weight: 800;
 
-  .rf-email-input {
-    flex: 1;
-  }
+  letter-spacing: -4px;
 
-  .rf-get-started {
-    width: auto;
-    padding: 14px 22px;
-  }
+  text-align: center;
 
-  .rf-navbar {
-    padding: 20px 10%;
-  }
+  cursor: default;
 }
 
-/* ===== DESKTOP ===== */
-@media (min-width: 1200px) {
-  .rf-title {
-    font-size: 56px;
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.rf-landing-description {
+  margin-top: 28px;
+
+  max-width: 550px;
+
+  color: #9a9a9a;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.rf-landing-actions {
+  margin-top: 36px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+}
+
+
+.rf-primary-btn,
+.rf-secondary-btn {
+  min-height: 48px;
+
+  padding: 0 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  border-radius: 9px;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* PRIMARY */
+
+.rf-primary-btn {
+  background: #621eff;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 35px rgba(98, 30, 255, 0.25);
+}
+
+
+.rf-primary-btn:hover {
+  background: #7135ff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 45px rgba(98, 30, 255, 0.35);
+}
+
+
+.rf-primary-btn i {
+  transition: transform 0.25s ease;
+}
+
+
+.rf-primary-btn:hover i {
+  transform: translateX(4px);
+}
+
+
+/* SECONDARY */
+
+.rf-secondary-btn {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: #dddddd;
+}
+
+
+.rf-secondary-btn:hover {
+  border-color: rgba(98, 30, 255, 0.55);
+
+  background: rgba(98, 30, 255, 0.08);
+
+  color: #ffffff;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   META
+   ========================================================= */
+
+.rf-landing-meta {
+  margin-top: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  color: #666;
+
+  font-size: 11px;
+}
+
+
+.rf-meta-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  white-space: nowrap;
+}
+
+
+.rf-meta-item i {
+  color: #621eff;
+
+  font-size: 13px;
+}
+
+
+.rf-meta-divider {
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #444;
+}
+
+
+/* =========================================================
+   BOTTOM DECORATION
+   ========================================================= */
+
+.rf-hero-bottom {
+  position: absolute;
+
+  bottom: 25px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  gap: 6px;
+}
+
+
+.rf-hero-bottom span {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #621eff;
+
+  opacity: 0.4;
+}
+
+
+.rf-hero-bottom span:nth-child(2) {
+  opacity: 1;
+
+  box-shadow:
+    0 0 12px rgba(98, 30, 255, 0.8);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .rf-landing-navbar {
+    padding: 20px;
   }
 
-  .rf-hero-content {
-    max-width: 800px;
+
+  /* .rf-landing-logo {
+    font-size: 19px;
+  } */
+
+
+  /* .rf-language-select {
+    height: 38px;
+
+    padding-left: 11px;
+
+    font-size: 12px;
+  } */
+
+
+  .rf-landing-signin {
+    height: 38px;
+
+    padding: 0 13px;
+
+    font-size: 12px;
   }
+
+
+  .rf-landing-hero {
+    padding:
+      130px
+      20px
+      90px;
+  }
+
+
+  .rf-hero-badge {
+    margin-bottom: 22px;
+
+    font-size: 11px;
+  }
+
+
+  .rf-landing-title {
+    font-size: clamp(43px, 12vw, 68px);
+
+    letter-spacing: -2.5px;
+  }
+
+
+  .rf-landing-description {
+    margin-top: 22px;
+
+    font-size: 15px;
+  }
+
+
+  .rf-landing-actions {
+    width: 100%;
+
+    flex-direction: column;
+
+    margin-top: 30px;
+  }
+
+
+  .rf-primary-btn,
+  .rf-secondary-btn {
+    width: 100%;
+
+    max-width: 300px;
+  }
+
+
+  .rf-landing-meta {
+    flex-wrap: wrap;
+
+    max-width: 360px;
+
+    margin-top: 38px;
+
+    row-gap: 12px;
+  }
+
 }
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .rf-landing-navbar {
+    padding: 16px;
+  }
+
+
+  .rf-landing-nav-right {
+    gap: 6px;
+  }
+
+
+  /* .rf-language-select {
+    width: 38px;
+
+    padding: 0;
+
+    text-indent: -9999px;
+  } */
+
+
+  /* .rf-language-icon {
+    right: 50%;
+
+    transform:
+      translate(50%, -50%);
+  } */
+
+
+  .rf-landing-signin {
+    padding: 0 12px;
+  }
+
+
+  .rf-landing-signin i {
+    display: none;
+  }
+
+
+  .rf-landing-hero {
+    padding:
+      120px
+      16px
+      80px;
+  }
+
+
+  .rf-hero-badge {
+    padding: 7px 11px;
+
+    font-size: 10px;
+  }
+
+
+  .rf-status-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+
+  .rf-landing-title {
+    font-size: clamp(40px, 13vw, 58px);
+
+    letter-spacing: -2px;
+
+    line-height: 1;
+  }
+
+
+  .rf-landing-description {
+    font-size: 14px;
+
+    line-height: 1.6;
+  }
+
+
+  .rf-landing-actions {
+    margin-top: 26px;
+  }
+
+
+  .rf-primary-btn,
+  .rf-secondary-btn {
+    max-width: 100%;
+
+    min-height: 47px;
+  }
+
+
+  .rf-landing-meta {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    width: 100%;
+
+    gap: 12px;
+
+    margin-top: 35px;
+  }
+
+
+  .rf-meta-item {
+    justify-content: center;
+  }
+
+
+  .rf-meta-divider {
+    display: none;
+  }
+
+
+  .rf-glow-one {
+    width: 280px;
+    height: 280px;
+  }
+
+
+  .rf-glow-two {
+    width: 180px;
+    height: 180px;
+  }
+
+
+  .rf-landing-grid {
+    background-size: 45px 45px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .rf-landing-logo {
+    font-size: 17px;
+  }
+
+
+  /* .rf-language-select {
+    width: 34px;
+  } */
+
+
+  .rf-landing-signin {
+    height: 36px;
+
+    padding: 0 10px;
+
+    font-size: 11px;
+  }
+
+
+  .rf-landing-title {
+    font-size: 39px;
+  }
+
+
+  .rf-landing-description {
+    font-size: 13px;
+  }
+
+}
+

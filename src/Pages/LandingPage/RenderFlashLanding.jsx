@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import "./RenderFlashLanding.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,7 +12,7 @@ const RenderFlashLanding = () => {
 
   const navigate = useNavigate();
 
-  //auth check real
+  // Auth check
   useEffect(() => {
     const check = async () => {
       const user = await verifyUser();
@@ -22,10 +23,10 @@ const RenderFlashLanding = () => {
     };
 
     check();
-  }, []);
+  }, [navigate]);
 
   return (
-    <div className="rf-wrapper">
+    <div className="rf-landing">
       <TargetCursor
         spinDuration={2}
         hideDefaultCursor
@@ -33,50 +34,141 @@ const RenderFlashLanding = () => {
         hoverDuration={0.2}
       />
 
-      {/* NAVBAR */}
-      <header className="rf-header">
-        <nav className="rf-navbar">
-          <div className="rf-logo cursor-target">{t("title")}</div>
+      {/* ================= NAVBAR ================= */}
+      <header className="rf-landing-header">
+        <nav className="rf-landing-navbar">
 
-          <div className="rf-nav-right">
-            <div className="rf-lang-wrapper">
+          {/* LOGO */}
+          <div className="rf-landing-logo cursor-target">
+            {t("title")}
+          </div>
+
+          {/* NAV RIGHT */}
+          <div className="rf-landing-nav-right">
+
+            {/* LANGUAGE */}
+            <div className="rf-language-container">
               <select
-                className="rf-language cursor-target"
+                className="rf-language-select cursor-target"
+                value={i18n.language}
                 onChange={(e) => i18n.changeLanguage(e.target.value)}
               >
                 <option value="en">English</option>
-                <option value="hi">Hindi</option>
+                {/* <option value="hi">Hindi</option> */}
                 <option value="ar">Arabic</option>
-                <option value="jn">Japanese</option>
-                <option value="tl">Tamil</option>
-                <option value="ml">Malayalam</option>
+                {/* <option value="jn">Japanese</option> */}
+                {/* <option value="tl">Tamil</option> */}
+                {/* <option value="ml">Malayalam</option> */}
               </select>
+
+              <i className="bi bi-chevron-down rf-language-icon"></i>
             </div>
 
-            <Link to="/login" className="rf-signin-btn cursor-target">
+            {/* SIGN IN */}
+            {/* <Link
+              to="/login"
+              className="rf-landing-signin cursor-target"
+            >
               {t("signin")}
-            </Link>
+              <i className="bi bi-arrow-up-right"></i>
+            </Link> */}
+
           </div>
         </nav>
       </header>
 
-      {/* HERO */}
-      <section className="rf-hero">
-        <div className="rf-overlay"></div>
+      {/* ================= HERO ================= */}
+      <main className="rf-landing-main">
 
-        <div className="rf-hero-content">
+        {/* BACKGROUND EFFECTS */}
+        <div className="rf-landing-glow rf-glow-one"></div>
+        <div className="rf-landing-glow rf-glow-two"></div>
+
+        <div className="rf-landing-grid"></div>
+
+        {/* HERO CONTENT */}
+        <section className="rf-landing-hero">
+
+          {/* <div className="rf-hero-badge cursor-target">
+            <span className="rf-status-dot"></span>
+            <span>Creative community for editors</span>
+          </div> */}
+
           <GradientText
             colors={["#621eff", "#d3c7ff"]}
             animationSpeed={7}
-            showBorder={true}
-            className="custom-class"
+            showBorder={false}
+            className="rf-gradient-title"
           >
-            <h1 className="rf-title cursor-target">{t("hero_title")}</h1>
+            <h1 className="rf-landing-title cursor-target">
+              {t("hero_title")}
+            </h1>
           </GradientText>
-        </div>
-      </section>
+
+          <p className="rf-landing-description">
+           { t("tagline_1")}
+            <br />
+            { t("tagline_2")}
+          </p>
+
+          {/* CTA */}
+          <div className="rf-landing-actions">
+
+            <Link
+              to="/login"
+              className="rf-primary-btn cursor-target"
+            >
+              <span>{t("signin")}</span>
+              <i className="bi bi-arrow-right"></i>
+            </Link>
+
+            <Link
+              to="/login"
+              className="rf-secondary-btn cursor-target"
+            >
+              Explore RenderFlash
+              <i className="bi bi-compass"></i>
+            </Link>
+
+          </div>
+
+          {/* SMALL INFO */}
+          {/* <div className="rf-landing-meta">
+
+            <div className="rf-meta-item">
+              <i className="bi bi-play-circle"></i>
+              <span>Share your edits</span>
+            </div>
+
+            <div className="rf-meta-divider"></div>
+
+            <div className="rf-meta-item">
+              <i className="bi bi-people"></i>
+              <span>Connect with creators</span>
+            </div>
+
+            <div className="rf-meta-divider"></div>
+
+            <div className="rf-meta-item">
+              <i className="bi bi-stars"></i>
+              <span>Discover creativity</span>
+            </div>
+
+          </div> */}
+
+        </section>
+
+        {/* BOTTOM DECORATION */}
+        {/* <div className="rf-hero-bottom">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div> */}
+
+      </main>
     </div>
   );
 };
 
 export default RenderFlashLanding;
+

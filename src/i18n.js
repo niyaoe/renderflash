@@ -14,6 +14,8 @@ i18n
           hero_title: "Unlimited Edits, Creativity & More",
           signin: "Sign In",
           title: "renderFlash",
+          tagline_1: "Create. Share. Discover.",
+          tagline_2: "A community built for creative minds.",
         },
       },
 
@@ -36,6 +38,8 @@ i18n
           hero_title: "تعديلات غير محدودة، إبداع وأكثر",
           signin: "تسجيل الدخول",
           title: "رندرفلاش",
+          tagline_1: "أبدِع. شارِك. اكتشِف",
+          tagline_2: "مجتمعٌ صُمِّمَ للعقول المبدعة",
         },
       },
       jn: {
