@@ -119,7 +119,7 @@ const RenderFlashLanding = () => {
               className="rf-primary-btn cursor-target"
             >
               <span>{t("signin")}</span>
-              <i className="bi bi-arrow-right"></i>
+              {/* <i className="bi bi-arrow-right"></i> */}
             </Link>
 
             <Link
@@ -127,7 +127,7 @@ const RenderFlashLanding = () => {
               className="rf-secondary-btn cursor-target"
             >
               Explore RenderFlash
-              <i className="bi bi-compass"></i>
+              {/* <i className="bi bi-compass"></i> */}
             </Link>
 
           </div>

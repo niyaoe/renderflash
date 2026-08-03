@@ -1,0 +1,525 @@
+
+/* =========================================
+   RENDERFLASH SIGNUP
+   ========================================= */
+
+.rf-signup-page {
+  min-height: 100vh;
+  width: 100%;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(98, 30, 255, 0.10),
+      transparent 35%
+    ),
+    #050505;
+
+  color: #ffffff;
+
+  font-family: "Poppins", sans-serif;
+}
+
+
+/* =========================================
+   BACKGROUND GLOWS
+   ========================================= */
+
+.rf-signup-glow {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  filter: blur(120px);
+
+  pointer-events: none;
+
+  opacity: 0.35;
+}
+
+.rf-signup-glow-one {
+  top: -180px;
+  left: -120px;
+
+  background: #621eff;
+}
+
+.rf-signup-glow-two {
+  right: -180px;
+  bottom: -180px;
+
+  background: #621eff;
+}
+
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+
+.rf-signup-header {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+
+  padding: 24px 5%;
+
+  display: flex;
+  align-items: center;
+}
+
+.rf-signup-brand {
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+
+  transition: 0.25s ease;
+}
+
+.rf-signup-brand:hover {
+  color: #b59aff;
+
+  text-shadow:
+    0 0 20px rgba(98, 30, 255, 0.5);
+}
+
+
+/* =========================================
+   CENTER
+   ========================================= */
+
+.rf-signup-main {
+  flex: 1;
+
+  position: relative;
+
+  z-index: 5;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 20px 70px;
+
+  overflow-y: auto;
+}
+
+.rf-signup-content {
+  width: 100%;
+
+  max-width: 430px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+
+/* =========================================
+   GRADIENT BRAND
+   ========================================= */
+
+.rf-signup-logo-link {
+  display: block;
+
+  width: 100%;
+
+  text-decoration: none;
+}
+
+.rf-signup-gradient {
+  min-height: 0 !important;
+
+  height: 0 !important;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.rf-signup-card {
+  width: 100%;
+
+  padding: 30px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(98, 30, 255, 0.07);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* =========================================
+   FORM
+   ========================================= */
+
+.rf-signup-form {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+
+/* =========================================
+   FIELD
+   ========================================= */
+
+.rf-signup-field {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.rf-signup-field label {
+  color: #d8d8d8;
+
+  font-size: 13px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================
+   INPUT WRAPPER
+   ========================================= */
+
+.rf-signup-input-wrapper {
+  width: 100%;
+
+  height: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 0 14px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+
+  transition: 0.25s ease;
+}
+
+.rf-signup-input-wrapper i {
+  color: #888;
+
+  font-size: 16px;
+
+  flex-shrink: 0;
+
+  transition: 0.25s ease;
+}
+
+.rf-signup-input-wrapper:focus-within {
+  border-color: rgba(98, 30, 255, 0.75);
+
+  background: rgba(98, 30, 255, 0.07);
+
+  box-shadow:
+    0 0 0 3px rgba(98, 30, 255, 0.08),
+    0 0 25px rgba(98, 30, 255, 0.08);
+}
+
+.rf-signup-input-wrapper:focus-within i {
+  color: #9a73ff;
+}
+
+
+/* =========================================
+   INPUT
+   ========================================= */
+
+.rf-signup-input {
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-family: "Poppins", sans-serif;
+
+  font-size: 13px;
+}
+
+.rf-signup-input::placeholder {
+  color: #777;
+}
+
+.rf-signup-input:-webkit-autofill,
+.rf-signup-input:-webkit-autofill:hover,
+.rf-signup-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
+
+  transition:
+    background-color 9999s ease-in-out 0s;
+}
+
+
+/* =========================================
+   SIGNUP BUTTON
+   ========================================= */
+
+.rf-signup-btn {
+  width: 100%;
+
+  height: 50px;
+
+  margin-top: 5px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #621eff;
+
+  color: #ffffff;
+
+  font-family: "Poppins", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.rf-signup-btn i {
+  font-size: 16px;
+
+  transition: transform 0.25s ease;
+}
+
+.rf-signup-btn:hover {
+  background: #7440ff;
+
+  box-shadow:
+    0 10px 35px rgba(98, 30, 255, 0.35);
+
+  transform: translateY(-1px);
+}
+
+.rf-signup-btn:hover i {
+  transform: translateX(4px);
+}
+
+.rf-signup-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.rf-signup-footer {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 5px;
+
+  margin-top: 24px;
+
+  color: #777;
+
+  font-size: 12px;
+
+  text-align: center;
+}
+
+.rf-signup-login {
+  color: #a98cff;
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+.rf-signup-login:hover {
+  color: #c8b8ff;
+
+  text-shadow:
+    0 0 15px rgba(98, 30, 255, 0.5);
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (min-width: 768px) {
+
+  .rf-signup-header {
+    padding: 28px 6%;
+  }
+
+  .rf-signup-brand {
+    font-size: 22px;
+  }
+
+  .rf-signup-main {
+    padding: 30px 20px 70px;
+  }
+
+  .rf-signup-card {
+    padding: 34px;
+  }
+
+}
+
+
+/* =========================================
+   DESKTOP
+   ========================================= */
+
+@media (min-width: 1200px) {
+
+  .rf-signup-header {
+    padding: 30px 7%;
+  }
+
+  .rf-signup-card {
+    padding: 36px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 480px) {
+
+  .rf-signup-header {
+    padding: 20px;
+  }
+
+  .rf-signup-brand {
+    font-size: 18px;
+  }
+
+  .rf-signup-main {
+    align-items: flex-start;
+
+    padding:
+      25px
+      14px
+      50px;
+  }
+
+  .rf-signup-card {
+    padding: 22px 18px;
+
+    border-radius: 15px;
+  }
+
+  .rf-signup-form {
+    gap: 15px;
+  }
+
+  .rf-signup-field {
+    gap: 7px;
+  }
+
+  .rf-signup-input-wrapper {
+    height: 48px;
+
+    padding: 0 12px;
+  }
+
+  .rf-signup-input {
+    font-size: 12px;
+  }
+
+  .rf-signup-btn {
+    height: 48px;
+
+    font-size: 13px;
+  }
+
+  .rf-signup-footer {
+    margin-top: 20px;
+
+    font-size: 11px;
+  }
+
+  .rf-signup-glow {
+    width: 280px;
+    height: 280px;
+
+    filter: blur(90px);
+  }
+}
+

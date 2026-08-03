@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "./RenderFlashLogin.css";
 import { Link, useNavigate } from "react-router-dom";
 import TargetCursor from "../../Blits/TargetCursor";
+import GradientText from "../../componentblits/GradientText";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
-import { toast, Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 
 const RenderFlashLogin = () => {
   const navigate = useNavigate();
@@ -30,8 +31,9 @@ const RenderFlashLogin = () => {
         password: formData.password,
       });
 
-      // store token
+      // Store token
       localStorage.setItem("token", res.data.token);
+
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -41,17 +43,21 @@ const RenderFlashLogin = () => {
           email: res.data.user.email,
         }),
       );
+
       toast.success("Login successful");
-      // redirect after login
+
+      // Redirect after login
       navigate("/main/profile");
     } catch (err) {
       console.log(err.response?.data || err.message);
+
       toast.error(err.response?.data?.message || "Login failed");
     }
   };
 
   return (
-    <div className="rf-login-wrapper">
+    <div className="rf-login-page">
+      {/* CUSTOM CURSOR */}
       <TargetCursor
         spinDuration={2}
         hideDefaultCursor
@@ -59,54 +65,114 @@ const RenderFlashLogin = () => {
         hoverDuration={0.2}
       />
 
-      <div className="rf-login-container">
-        <div className="rf-login-card">
-          <Link className="loginPage-title" to="/">
-            <h2 className="rf-login-logo cursor-target">renderFlash</h2>
+      {/* BACKGROUND GLOWS */}
+      <div className="rf-login-glow rf-login-glow-one"></div>
+      <div className="rf-login-glow rf-login-glow-two"></div>
+
+      {/* TOP NAV */}
+      <header className="rf-login-header">
+        <Link to="/" className="rf-login-brand cursor-target">
+          RenderFlash
+        </Link>
+      </header>
+
+      {/* CENTER */}
+      <main className="rf-login-main">
+        <div className="rf-login-content">
+          {/* BRAND */}
+          <Link to="/" className="rf-login-logo-link cursor-target">
+            <GradientText
+              colors={["#621eff", "#d3c7ff"]}
+              animationSpeed={7}
+              showBorder={false}
+              className="rf-login-gradient"
+            >
+              {/* <span className="rf-login-logo">Login</span> */}
+            </GradientText>
           </Link>
 
-          <h2 className="rf-login-title">Sign In</h2>
+          {/* TITLE */}
+          {/* <h1 className="rf-login-title">Welcome back</h1> */}
 
-          <form className="rf-login-form" onSubmit={handleSubmit}>
-            <div className="rf-login-field">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="rf-login-input cursor-target"
-                value={formData.email}
-                onChange={handleChange}
-              />
+          {/* <p className="rf-login-subtitle">
+            Sign in to continue to your RenderFlash account.
+          </p> */}
+
+          {/* FORM CARD */}
+          <div className="rf-login-card">
+            <form className="rf-login-form" onSubmit={handleSubmit}>
+              {/* EMAIL */}
+              <div className="rf-login-field">
+                <label htmlFor="rf-login-email">Email</label>
+
+                <div className="rf-login-input-wrapper">
+                  <i className="bi bi-envelope"></i>
+
+                  <input
+                    id="rf-login-email"
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    className="rf-login-input cursor-target"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* PASSWORD */}
+              <div className="rf-login-field">
+                <label htmlFor="rf-login-password">Password</label>
+
+                <div className="rf-login-input-wrapper">
+                  <i className="bi bi-lock"></i>
+
+                  <input
+                    id="rf-login-password"
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    className="rf-login-input cursor-target"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* LOGIN BUTTON */}
+              <button type="submit" className="rf-login-btn cursor-target">
+                <span>Sign In</span>
+
+                <i className="bi bi-arrow-right"></i>
+              </button>
+            </form>
+
+            {/* FOOTER */}
+            <div className="rf-login-footer">
+              <span>New to renderFlash?</span>
+
+              <Link to="/signup" className="rf-login-signup cursor-target">
+                Sign up now
+              </Link>
             </div>
-
-            <div className="rf-login-field">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="rf-login-input cursor-target"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
-
-            <button type="submit" className="rf-login-btn cursor-target">
-              Sign In
-            </button>
-          </form>
-
-          <div className="rf-login-footer">
-            <p>
-              New to renderFlash?{" "}
-              <span className="rf-login-signup cursor-target">
-                <Link className="sign-switch" to="/signup">
-                  Sign up now
-                </Link>
-              </span>
-            </p>
           </div>
         </div>
-      </div>
+      </main>
+
+      {/* BOTTOM DECORATION */}
+      {/* <footer className="rf-login-decoration">
+        <div className="rf-login-lines">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div className="rf-login-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </footer> */}
     </div>
   );
 };

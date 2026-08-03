@@ -1,10 +1,12 @@
+
 import React, { useState } from "react";
-import "../LoginPage/RenderFlashLogin.css";
+import "./RenderFlashSignup.css";
 import { Link, useNavigate } from "react-router-dom";
 import TargetCursor from "../../Blits/TargetCursor";
+import GradientText from "../../componentblits/GradientText";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
-import { toast, Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -38,8 +40,9 @@ const SignUpPage = () => {
         password: formData.password,
       });
 
-      // store token
+      // Store token
       localStorage.setItem("token", res.data.token);
+
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -47,18 +50,21 @@ const SignUpPage = () => {
           avatar: res.data.user.avatar,
         }),
       );
-      toast.success("Login successful");
 
-      // redirect to profile/home
+      toast.success("Signup successful");
+
+      // Redirect after signup
       navigate("/main/profile");
     } catch (err) {
       console.log(err.response?.data || err.message);
+
       toast.error(err.response?.data?.message || "Signup failed ❌");
     }
   };
 
   return (
-    <div className="rf-login-wrapper">
+    <div className="rf-signup-page">
+      {/* CUSTOM CURSOR */}
       <TargetCursor
         spinDuration={2}
         hideDefaultCursor
@@ -66,78 +72,155 @@ const SignUpPage = () => {
         hoverDuration={0.2}
       />
 
-      <div className="rf-login-container">
-        <div className="rf-login-card">
-          <Link className="loginPage-title" to="/">
-            <h2 className="rf-login-logo cursor-target">renderFlash</h2>
+      {/* BACKGROUND GLOWS */}
+      {/* <div className="rf-signup-glow rf-signup-glow-one"></div>
+      <div className="rf-signup-glow rf-signup-glow-two"></div> */}
+
+      {/* TOP NAV */}
+      <header className="rf-signup-header">
+        <Link to="/" className="rf-signup-brand cursor-target">
+          RenderFlash
+        </Link>
+      </header>
+
+      {/* CENTER */}
+      <main className="rf-signup-main">
+        <div className="rf-signup-content">
+
+          {/* GRADIENT BRAND */}
+          <Link
+            to="/"
+            className="rf-signup-logo-link cursor-target"
+          >
+            <GradientText
+              colors={["#621eff", "#d3c7ff"]}
+              animationSpeed={7}
+              showBorder={false}
+              className="rf-signup-gradient"
+            >
+              {/* Optional gradient text */}
+            </GradientText>
           </Link>
 
-          <h2 className="rf-login-title">Sign Up</h2>
+          {/* SIGNUP CARD */}
+          <div className="rf-signup-card">
+            <form
+              className="rf-signup-form"
+              onSubmit={handleSubmit}
+            >
 
-          <form className="rf-login-form" onSubmit={handleSubmit}>
-            <div className="rf-login-field">
-              <input
-                type="text"
-                name="username"
-                placeholder="username"
-                className="rf-login-input cursor-target"
-                value={formData.username}
-                onChange={handleChange}
-              />
+              {/* USERNAME */}
+              <div className="rf-signup-field">
+                <label htmlFor="rf-signup-username">
+                  Username
+                </label>
+
+                <div className="rf-signup-input-wrapper">
+                  <i className="bi bi-person"></i>
+
+                  <input
+                    id="rf-signup-username"
+                    type="text"
+                    name="username"
+                    placeholder="Choose a username"
+                    className="rf-signup-input cursor-target"
+                    value={formData.username}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* EMAIL */}
+              <div className="rf-signup-field">
+                <label htmlFor="rf-signup-email">
+                  Email
+                </label>
+
+                <div className="rf-signup-input-wrapper">
+                  <i className="bi bi-envelope"></i>
+
+                  <input
+                    id="rf-signup-email"
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    className="rf-signup-input cursor-target"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* PASSWORD */}
+              <div className="rf-signup-field">
+                <label htmlFor="rf-signup-password">
+                  Password
+                </label>
+
+                <div className="rf-signup-input-wrapper">
+                  <i className="bi bi-lock"></i>
+
+                  <input
+                    id="rf-signup-password"
+                    type="password"
+                    name="password"
+                    placeholder="Create a password"
+                    className="rf-signup-input cursor-target"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* CONFIRM PASSWORD */}
+              <div className="rf-signup-field">
+                <label htmlFor="rf-signup-confirm-password">
+                  Confirm Password
+                </label>
+
+                <div className="rf-signup-input-wrapper">
+                  <i className="bi bi-shield-lock"></i>
+
+                  <input
+                    id="rf-signup-confirm-password"
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm your password"
+                    className="rf-signup-input cursor-target"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* SIGNUP BUTTON */}
+              <button
+                type="submit"
+                className="rf-signup-btn cursor-target"
+              >
+                <span>Create Account</span>
+
+                <i className="bi bi-arrow-right"></i>
+              </button>
+            </form>
+
+            {/* FOOTER */}
+            <div className="rf-signup-footer">
+              <span>Already in renderFlash?</span>
+
+              <Link
+                to="/login"
+                className="rf-signup-login cursor-target"
+              >
+                Sign in now
+              </Link>
             </div>
-
-            <div className="rf-login-field">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                className="rf-login-input cursor-target"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="rf-login-field">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="rf-login-input cursor-target"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="rf-login-field">
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                className="rf-login-input cursor-target"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-              />
-            </div>
-
-            <button type="submit" className="rf-login-btn cursor-target">
-              Sign Up
-            </button>
-          </form>
-
-          <div className="rf-login-footer">
-            <p>
-              Already in renderFlash?{" "}
-              <span className="rf-login-signup cursor-target">
-                <Link className="sign-switch" to="/login">
-                  Sign in now
-                </Link>
-              </span>
-            </p>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
 
 export default SignUpPage;
+

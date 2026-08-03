@@ -1,184 +1,752 @@
-/* ===== RESET ===== */
+
+/* =========================================================
+   RENDERFLASH LOGIN
+   ========================================================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.sign-switch{
-  text-decoration: none;
-  color: white;
-}
 
-.loginPage-title{
-  text-decoration: none;
-}
+/* =========================================================
+   PAGE
+   ========================================================= */
 
-.rf-login-wrapper {
-  min-height: 100vh;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  /* font-family: 'Segoe UI', sans-serif; */
-  color: white;
+.rf-login-page {
   position: relative;
+
+  min-height: 100vh;
+  width: 100%;
+
+  background: #050505;
+
+  color: #ffffff;
+
+  overflow: hidden;
+
+  font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
-/* DARK OVERLAY */
-.rf-login-wrapper::before {
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.rf-login-page::before {
   content: "";
+
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(98, 30, 255, 0.08),
+      transparent 35%
+    );
+
+  pointer-events: none;
 }
 
-/* ===== HEADER ===== */
+
+/* =========================================================
+   PURPLE GLOWS
+   ========================================================= */
+
+.rf-login-glow {
+  position: absolute;
+
+  /* border-radius: 50%; */
+
+  pointer-events: none;
+
+  filter: blur(110px);
+
+  opacity: 0.18;
+}
+
+
+.rf-login-glow-one {
+  width: 400px;
+  height: 400px;
+
+  background: #621eff;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+
+.rf-login-glow-two {
+  width: 230px;
+  height: 230px;
+
+  background: #8c5cff;
+
+  top: 5%;
+  right: 8%;
+
+  opacity: 0.08;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 .rf-login-header {
-  padding: 20px;
-  position: relative;
-  z-index: 2;
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  padding: 25px 35px;
+
+  z-index: 20;
 }
 
-.rf-login-logo {
-  font-size: 22px;
-  font-weight: 700;
+
+.rf-login-brand {
   color: #621eff;
+
+  font-size: 22px;
+
+  font-weight: 700;
+
   letter-spacing: 1px;
-  
+
+  text-decoration: none;
+
+  transition: 0.25s ease;
 }
 
-/* ===== CENTER CONTAINER ===== */
-.rf-login-container {
-  flex: 1;
+
+.rf-login-brand:hover {
+  color: #8151ff;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.rf-login-main {
+  position: relative;
+
+  min-height: 100vh;
+
   display: flex;
+
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  position: relative;
-  z-index: 2;
+
+  padding: 90px 20px 120px;
+
+  z-index: 5;
 }
 
-/* ===== CARD ===== */
-.rf-login-card {
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.rf-login-content {
   width: 100%;
-  max-width: 400px;
-  background: rgba(0, 0, 0, 0.85);
-  padding: 30px 25px;
-  border-radius: 8px;
+
+  max-width: 430px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  animation: rfLoginAppear 0.7s ease forwards;
 }
+
+
+@keyframes rfLoginAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   GRADIENT LOGO
+   ========================================================= */
+
+.rf-login-logo-link {
+  text-decoration: none;
+
+  margin-bottom: 20px;
+}
+
+
+.rf-login-gradient {
+  border: none !important;
+
+  padding: 0 !important;
+}
+
+
+.rf-login-logo {
+  font-size: 30px;
+
+  font-weight: 800;
+
+  letter-spacing: -1px;
+
+  cursor: default;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
 
 .rf-login-title {
-  font-size: 24px;
-  margin-bottom: 25px;
+  font-size: 32px;
+
   font-weight: 700;
+
+  line-height: 1.2;
+
+  margin: 0;
+
+  color: #ffffff;
 }
 
-/* ===== FORM ===== */
+
+.rf-login-subtitle {
+  max-width: 350px;
+
+  margin-top: 10px;
+  margin-bottom: 28px;
+
+  color: #777;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.rf-login-card {
+  width: 100%;
+
+  padding: 25px;
+
+  background: rgba(13, 13, 13, 0.82);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 14px;
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(98, 30, 255, 0.05);
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
 .rf-login-form {
   display: flex;
+
   flex-direction: column;
-  gap: 15px;
+
+  gap: 18px;
 }
+
+
+/* =========================================================
+   FIELD
+   ========================================================= */
+
+.rf-login-field {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 8px;
+}
+
+
+.rf-login-field label {
+  color: #aaa;
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+   ========================================================= */
+
+.rf-login-input-wrapper {
+  position: relative;
+
+  width: 100%;
+}
+
+
+.rf-login-input-wrapper > i {
+  position: absolute;
+
+  left: 14px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #666;
+
+  font-size: 14px;
+
+  pointer-events: none;
+
+  transition: 0.25s ease;
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
 
 .rf-login-input {
-  font-family: "Poppins", sans-serif;
   width: 100%;
-  padding: 14px;
-  border-radius: 4px;
-  border: none;
+
+  height: 48px;
+
+  padding: 0 14px 0 42px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 8px;
+
   outline: none;
-  font-size: 14px;
-  background: #333;
-  color: white;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  color: #ffffff;
+
+  font-family: "Poppins", sans-serif;
+
+  font-size: 13px;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
 
 .rf-login-input::placeholder {
-  color: #aaa;
+  color: #555;
 }
+
+
+.rf-login-input:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+
+  background: rgba(255, 255, 255, 0.06);
+}
+
+
+.rf-login-input:focus {
+  border-color: rgba(98, 30, 255, 0.8);
+
+  background: rgba(98, 30, 255, 0.045);
+
+  box-shadow:
+    0 0 0 3px rgba(98, 30, 255, 0.08);
+}
+
+
+.rf-login-input:focus + i {
+  color: #621eff;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
 
 .rf-login-btn {
-  font-family: "Poppins", sans-serif;
-  padding: 14px;
-  background-color: #621eff;
+  width: 100%;
+
+  height: 48px;
+
+  margin-top: 4px;
+
   border: none;
-  color: white;
-  font-weight: bold;
-  border-radius: 4px;
+
+  border-radius: 8px;
+
+  background: #621eff;
+
+  color: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  font-family: "Poppins", sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
   cursor: pointer;
-  transition: 0.3s;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
 
 .rf-login-btn:hover {
-  background-color: #621effcc;
+  background: #7134ff;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 30px rgba(98, 30, 255, 0.25);
 }
 
-/* OPTIONS */
-.rf-login-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  margin-top: 10px;
+
+.rf-login-btn:active {
+  transform: translateY(0);
 }
 
-.rf-login-remember {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
 
-.rf-login-help {
-  color: #bbb;
-  text-decoration: none;
-}
-
-.rf-login-help:hover {
-  text-decoration: underline;
-}
-
-/* FOOTER */
-.rf-login-footer {
-  margin-top: 30px;
+.rf-login-btn i {
   font-size: 14px;
-  color: #aaa;
+
+  transition: transform 0.25s ease;
 }
+
+
+.rf-login-btn:hover i {
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.rf-login-footer {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 22px;
+
+  color: #666;
+
+  font-size: 12px;
+}
+
 
 .rf-login-signup {
-  color: white;
+  color: #ffffff;
+
   font-weight: 600;
-  cursor: pointer;
-  
+
+  text-decoration: none;
+
+  transition: 0.25s ease;
 }
 
-/* ===== TABLET ===== */
+
+.rf-login-signup:hover {
+  color: #8c5cff;
+}
+
+
+/* =========================================================
+   BOTTOM DECORATION
+   ========================================================= */
+
+.rf-login-decoration {
+  position: absolute;
+
+  bottom: 22px;
+
+  left: 0;
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  z-index: 10;
+}
+
+
+/* =========================================================
+   LINES
+   ========================================================= */
+
+.rf-login-lines {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 12px;
+}
+
+
+.rf-login-lines span {
+  width: 24px;
+
+  height: 2px;
+
+  border-radius: 10px;
+
+  background: #621eff;
+
+  opacity: 0.55;
+}
+
+
+.rf-login-lines span:nth-child(2) {
+  width: 40px;
+
+  opacity: 1;
+}
+
+
+.rf-login-lines span:nth-child(3) {
+  opacity: 0.55;
+}
+
+
+/* =========================================================
+   DOTS
+   ========================================================= */
+
+.rf-login-dots {
+  display: flex;
+
+  gap: 6px;
+}
+
+
+.rf-login-dots span {
+  width: 4px;
+
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #621eff;
+
+  opacity: 0.55;
+}
+
+
+.rf-login-dots span:nth-child(2) {
+  opacity: 1;
+
+  width: 5px;
+  height: 5px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (min-width: 768px) {
 
-  .rf-login-logo {
-    font-size: 28px;
+  .rf-login-header {
+    padding: 28px 45px;
+  }
+
+  .rf-login-brand {
+    font-size: 25px;
+  }
+
+  .rf-login-content {
+    max-width: 450px;
   }
 
   .rf-login-card {
-    padding: 40px;
+    padding: 30px;
   }
 
   .rf-login-title {
-    font-size: 30px;
+    font-size: 36px;
   }
 
-  .rf-login-input {
-    font-size: 16px;
-  }
-
+  .rf-login-input,
   .rf-login-btn {
-    font-size: 16px;
+    height: 50px;
   }
+
 }
 
-/* ===== DESKTOP ===== */
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
 @media (min-width: 1200px) {
 
-  .rf-login-card {
-    max-width: 450px;
+  .rf-login-header {
+    padding: 30px 65px;
   }
+
+  .rf-login-brand {
+    font-size: 27px;
+  }
+
+  .rf-login-content {
+    max-width: 460px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .rf-login-header {
+    padding: 18px 16px;
+  }
+
+  .rf-login-brand {
+    font-size: 18px;
+  }
+
+  .rf-login-main {
+    padding: 80px 16px 100px;
+  }
+
+  .rf-login-content {
+    max-width: 100%;
+  }
+
+  .rf-login-logo {
+    font-size: 25px;
+  }
+
+  .rf-login-title {
+    font-size: 28px;
+  }
+
+  .rf-login-subtitle {
+    max-width: 310px;
+
+    font-size: 12px;
+
+    margin-bottom: 22px;
+  }
+
+  .rf-login-card {
+    padding: 20px;
+
+    border-radius: 12px;
+  }
+
+  .rf-login-input,
+  .rf-login-btn {
+    height: 46px;
+  }
+
+  .rf-login-footer {
+    font-size: 11px;
+  }
+
+  .rf-login-decoration {
+    bottom: 15px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .rf-login-main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .rf-login-logo {
+    font-size: 23px;
+  }
+
+  .rf-login-title {
+    font-size: 25px;
+  }
+
+  .rf-login-subtitle {
+    font-size: 11px;
+
+    max-width: 280px;
+  }
+
+  .rf-login-card {
+    padding: 17px;
+  }
+
+  .rf-login-footer {
+    flex-direction: column;
+
+    gap: 3px;
+  }
+
 }
