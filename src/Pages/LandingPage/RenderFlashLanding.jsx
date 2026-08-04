@@ -81,10 +81,10 @@ const RenderFlashLanding = () => {
       <main className="rf-landing-main">
 
         {/* BACKGROUND EFFECTS */}
-        <div className="rf-landing-glow rf-glow-one"></div>
-        <div className="rf-landing-glow rf-glow-two"></div>
+        {/* <div className="rf-landing-glow rf-glow-one"></div>
+        <div className="rf-landing-glow rf-glow-two"></div> */}
 
-        <div className="rf-landing-grid"></div>
+        {/* <div className="rf-landing-grid"></div> */}
 
         {/* HERO CONTENT */}
         <section className="rf-landing-hero">

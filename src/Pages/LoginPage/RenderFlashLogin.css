@@ -1,368 +1,207 @@
 
-/* =========================================================
+/* =========================================
    RENDERFLASH LOGIN
-   ========================================================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
-/* =========================================================
-   PAGE
-   ========================================================= */
+   ========================================= */
 
 .rf-login-page {
-  position: relative;
-
   min-height: 100vh;
   width: 100%;
-
-  background: #050505;
-
-  color: #ffffff;
-
-  overflow: hidden;
-
-  font-family: "Poppins", "Segoe UI", sans-serif;
-}
-
-
-/* =========================================================
-   BACKGROUND
-   ========================================================= */
-
-.rf-login-page::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(98, 30, 255, 0.08),
-      transparent 35%
-    );
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   PURPLE GLOWS
-   ========================================================= */
-
-.rf-login-glow {
-  position: absolute;
-
-  /* border-radius: 50%; */
-
-  pointer-events: none;
-
-  filter: blur(110px);
-
-  opacity: 0.18;
-}
-
-
-.rf-login-glow-one {
-  width: 400px;
-  height: 400px;
-
-  background: #621eff;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-}
-
-
-.rf-login-glow-two {
-  width: 230px;
-  height: 230px;
-
-  background: #8c5cff;
-
-  top: 5%;
-  right: 8%;
-
-  opacity: 0.08;
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.rf-login-header {
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-
-  padding: 25px 35px;
-
-  z-index: 20;
-}
-
-
-.rf-login-brand {
-  color: #621eff;
-
-  font-size: 22px;
-
-  font-weight: 700;
-
-  letter-spacing: 1px;
-
-  text-decoration: none;
-
-  transition: 0.25s ease;
-}
-
-
-.rf-login-brand:hover {
-  color: #8151ff;
-}
-
-
-/* =========================================================
-   MAIN
-   ========================================================= */
-
-.rf-login-main {
-  position: relative;
-
-  min-height: 100vh;
 
   display: flex;
-
   justify-content: center;
   align-items: center;
 
-  padding: 90px 20px 120px;
+  background: #000;
 
-  z-index: 5;
+  color: #fff;
+
+  padding: 24px;
+
+  overflow-x: hidden;
 }
 
 
-/* =========================================================
-   CONTENT
-   ========================================================= */
+/* =========================================
+   MAIN
+   ========================================= */
 
-.rf-login-content {
+.rf-login-main {
   width: 100%;
 
-  max-width: 430px;
-
   display: flex;
-
-  flex-direction: column;
-
+  justify-content: center;
   align-items: center;
-
-  text-align: center;
-
-  animation: rfLoginAppear 0.7s ease forwards;
 }
 
 
-@keyframes rfLoginAppear {
-
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-}
-
-
-/* =========================================================
-   GRADIENT LOGO
-   ========================================================= */
-
-.rf-login-logo-link {
-  text-decoration: none;
-
-  margin-bottom: 20px;
-}
-
-
-.rf-login-gradient {
-  border: none !important;
-
-  padding: 0 !important;
-}
-
-
-.rf-login-logo {
-  font-size: 30px;
-
-  font-weight: 800;
-
-  letter-spacing: -1px;
-
-  cursor: default;
-}
-
-
-/* =========================================================
-   TITLE
-   ========================================================= */
-
-.rf-login-title {
-  font-size: 32px;
-
-  font-weight: 700;
-
-  line-height: 1.2;
-
-  margin: 0;
-
-  color: #ffffff;
-}
-
-
-.rf-login-subtitle {
-  max-width: 350px;
-
-  margin-top: 10px;
-  margin-bottom: 28px;
-
-  color: #777;
-
-  font-size: 13px;
-
-  line-height: 1.7;
-}
-
-
-/* =========================================================
+/* =========================================
    CARD
-   ========================================================= */
+   ========================================= */
 
 .rf-login-card {
   width: 100%;
+  max-width: 430px;
 
-  padding: 25px;
+  padding: 38px;
 
-  background: rgba(13, 13, 13, 0.82);
+  background: #111;
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
   border-radius: 14px;
 
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
   box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.55),
-    0 0 50px rgba(98, 30, 255, 0.05);
+    0 20px 60px rgba(0, 0, 0, 0.55);
+
+  position: relative;
+}
+
+.title_logo{
+  
+  width: 220px;
+  height: 33px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .title_logo {
+    width: 150px;
+    height: 22px;
+  }
 }
 
 
-/* =========================================================
+
+/* =========================================
+   TOP ACCENT
+   ========================================= */
+
+/* .rf-login-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 15%;
+
+  width: 70%;
+  height: 2px;
+
+  background: #621eff;
+
+  border-radius: 0 0 10px 10px;
+} */
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.rf-login-title-link {
+  display: block;
+
+  text-decoration: none;
+
+  text-align: center;
+
+  margin-bottom: 8px;
+}
+
+
+.rf-login-title {
+  margin: 0;
+
+  font-size: 30px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.8px;
+
+  color: #fff;
+
+  transition: 0.25s ease;
+}
+
+
+.rf-login-title-link:hover .rf-login-title {
+  color: #621eff;
+}
+
+
+/* =========================================
+   SUBTITLE
+   ========================================= */
+
+.rf-login-subtitle {
+  margin: 0 0 32px;
+
+  text-align: center;
+
+  color: #888;
+
+  font-size: 14px;
+
+  font-weight: 400;
+}
+
+
+/* =========================================
    FORM
-   ========================================================= */
+   ========================================= */
 
 .rf-login-form {
   display: flex;
 
   flex-direction: column;
 
-  gap: 18px;
+  gap: 20px;
 }
 
 
-/* =========================================================
+/* =========================================
    FIELD
-   ========================================================= */
+   ========================================= */
 
 .rf-login-field {
   display: flex;
 
   flex-direction: column;
 
-  align-items: flex-start;
-
   gap: 8px;
 }
 
 
 .rf-login-field label {
-  color: #aaa;
-
-  font-size: 12px;
+  font-size: 13px;
 
   font-weight: 500;
+
+  color: #d5d5d5;
 }
 
 
-/* =========================================================
+/* =========================================
    INPUT WRAPPER
-   ========================================================= */
+   ========================================= */
 
 .rf-login-input-wrapper {
-  position: relative;
-
-  width: 100%;
-}
-
-
-.rf-login-input-wrapper > i {
-  position: absolute;
-
-  left: 14px;
-
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  color: #666;
-
-  font-size: 14px;
-
-  pointer-events: none;
-
-  transition: 0.25s ease;
-}
-
-
-/* =========================================================
-   INPUT
-   ========================================================= */
-
-.rf-login-input {
   width: 100%;
 
-  height: 48px;
+  height: 50px;
 
-  padding: 0 14px 0 42px;
+  display: flex;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 0 14px;
+
+  background: #191919;
+
+  border: 1px solid #292929;
 
   border-radius: 8px;
-
-  outline: none;
-
-  background: rgba(255, 255, 255, 0.045);
-
-  color: #ffffff;
-
-  font-family: "Poppins", sans-serif;
-
-  font-size: 13px;
 
   transition:
     border-color 0.25s ease,
@@ -371,43 +210,89 @@
 }
 
 
-.rf-login-input::placeholder {
-  color: #555;
+.rf-login-input-wrapper i {
+  flex-shrink: 0;
+
+  color: #777;
+
+  font-size: 15px;
+
+  transition: 0.25s ease;
 }
 
 
-.rf-login-input:hover {
-  border-color: rgba(255, 255, 255, 0.15);
+.rf-login-input-wrapper:focus-within {
+  border-color: #621eff;
 
-  background: rgba(255, 255, 255, 0.06);
-}
-
-
-.rf-login-input:focus {
-  border-color: rgba(98, 30, 255, 0.8);
-
-  background: rgba(98, 30, 255, 0.045);
+  background: #1b1b1b;
 
   box-shadow:
-    0 0 0 3px rgba(98, 30, 255, 0.08);
+    0 0 0 3px rgba(98, 30, 255, 0.1);
 }
 
 
-.rf-login-input:focus + i {
+.rf-login-input-wrapper:focus-within i {
   color: #621eff;
 }
 
 
-/* =========================================================
+/* =========================================
+   INPUT
+   ========================================= */
+
+.rf-login-input {
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #fff;
+
+  font-family: "Poppins", sans-serif;
+
+  font-size: 14px;
+}
+
+
+.rf-login-input::placeholder {
+  color: #666;
+}
+
+
+.rf-login-input:-webkit-autofill,
+.rf-login-input:-webkit-autofill:hover,
+.rf-login-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+
+  -webkit-box-shadow: 0 0 0 1000px #191919 inset;
+
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* =========================================
    LOGIN BUTTON
-   ========================================================= */
+   ========================================= */
 
 .rf-login-btn {
   width: 100%;
 
-  height: 48px;
+  height: 50px;
 
   margin-top: 4px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
 
   border: none;
 
@@ -415,19 +300,11 @@
 
   background: #621eff;
 
-  color: #ffffff;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
+  color: #fff;
 
   font-family: "Poppins", sans-serif;
 
-  font-size: 13px;
+  font-size: 14px;
 
   font-weight: 600;
 
@@ -435,18 +312,30 @@
 
   transition:
     background 0.25s ease,
-    transform 0.25s ease,
+    transform 0.2s ease,
     box-shadow 0.25s ease;
 }
 
 
-.rf-login-btn:hover {
-  background: #7134ff;
+.rf-login-btn i {
+  font-size: 15px;
 
-  transform: translateY(-1px);
+  transition: transform 0.25s ease;
+}
+
+
+.rf-login-btn:hover {
+  background: #7439ff;
 
   box-shadow:
-    0 10px 30px rgba(98, 30, 255, 0.25);
+    0 8px 25px rgba(98, 30, 255, 0.25);
+
+  transform: translateY(-1px);
+}
+
+
+.rf-login-btn:hover i {
+  transform: translateX(4px);
 }
 
 
@@ -455,23 +344,13 @@
 }
 
 
-.rf-login-btn i {
-  font-size: 14px;
-
-  transition: transform 0.25s ease;
-}
-
-
-.rf-login-btn:hover i {
-  transform: translateX(3px);
-}
-
-
-/* =========================================================
+/* =========================================
    FOOTER
-   ========================================================= */
+   ========================================= */
 
 .rf-login-footer {
+  margin-top: 26px;
+
   display: flex;
 
   justify-content: center;
@@ -480,273 +359,130 @@
 
   gap: 5px;
 
-  margin-top: 22px;
+  flex-wrap: wrap;
 
-  color: #666;
+  text-align: center;
 
   font-size: 12px;
+
+  color: #777;
 }
 
-
 .rf-login-signup {
-  color: #ffffff;
+  color: #a98cff;
 
   font-weight: 600;
 
   text-decoration: none;
 
-  transition: 0.25s ease;
+  transition: 0.2s ease;
 }
-
 
 .rf-login-signup:hover {
-  color: #8c5cff;
+  color: #c1aeff;
 }
 
 
-/* =========================================================
-   BOTTOM DECORATION
-   ========================================================= */
-
-.rf-login-decoration {
-  position: absolute;
-
-  bottom: 22px;
-
-  left: 0;
-
-  width: 100%;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  z-index: 10;
-}
 
 
-/* =========================================================
-   LINES
-   ========================================================= */
-
-.rf-login-lines {
-  display: flex;
-
-  align-items: center;
-
-  gap: 6px;
-
-  margin-bottom: 12px;
-}
-
-
-.rf-login-lines span {
-  width: 24px;
-
-  height: 2px;
-
-  border-radius: 10px;
-
-  background: #621eff;
-
-  opacity: 0.55;
-}
-
-
-.rf-login-lines span:nth-child(2) {
-  width: 40px;
-
-  opacity: 1;
-}
-
-
-.rf-login-lines span:nth-child(3) {
-  opacity: 0.55;
-}
-
-
-/* =========================================================
-   DOTS
-   ========================================================= */
-
-.rf-login-dots {
-  display: flex;
-
-  gap: 6px;
-}
-
-
-.rf-login-dots span {
-  width: 4px;
-
-  height: 4px;
-
-  border-radius: 50%;
-
-  background: #621eff;
-
-  opacity: 0.55;
-}
-
-
-.rf-login-dots span:nth-child(2) {
-  opacity: 1;
-
-  width: 5px;
-  height: 5px;
-}
-
-
-/* =========================================================
+/* =========================================
    TABLET
-   ========================================================= */
+   ========================================= */
 
-@media (min-width: 768px) {
-
-  .rf-login-header {
-    padding: 28px 45px;
-  }
-
-  .rf-login-brand {
-    font-size: 25px;
-  }
-
-  .rf-login-content {
-    max-width: 450px;
-  }
+@media (min-width: 600px) {
 
   .rf-login-card {
-    padding: 30px;
+    padding: 42px;
   }
 
   .rf-login-title {
-    font-size: 36px;
-  }
-
-  .rf-login-input,
-  .rf-login-btn {
-    height: 50px;
-  }
-
-}
-
-
-/* =========================================================
-   DESKTOP
-   ========================================================= */
-
-@media (min-width: 1200px) {
-
-  .rf-login-header {
-    padding: 30px 65px;
-  }
-
-  .rf-login-brand {
-    font-size: 27px;
-  }
-
-  .rf-login-content {
-    max-width: 460px;
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-  .rf-login-header {
-    padding: 18px 16px;
-  }
-
-  .rf-login-brand {
-    font-size: 18px;
-  }
-
-  .rf-login-main {
-    padding: 80px 16px 100px;
-  }
-
-  .rf-login-content {
-    max-width: 100%;
-  }
-
-  .rf-login-logo {
-    font-size: 25px;
-  }
-
-  .rf-login-title {
-    font-size: 28px;
+    font-size: 32px;
   }
 
   .rf-login-subtitle {
-    max-width: 310px;
+    margin-bottom: 34px;
+  }
+}
 
-    font-size: 12px;
 
-    margin-bottom: 22px;
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 480px) {
+
+  .rf-login-page {
+    padding: 16px;
   }
 
   .rf-login-card {
-    padding: 20px;
+    max-width: 100%;
+
+    padding: 30px 22px;
 
     border-radius: 12px;
   }
 
-  .rf-login-input,
+  .rf-login-title {
+    font-size: 27px;
+  }
+
+  .rf-login-subtitle {
+    font-size: 13px;
+
+    margin-bottom: 27px;
+  }
+
+  .rf-login-form {
+    gap: 17px;
+  }
+
+  .rf-login-input-wrapper {
+    height: 48px;
+
+    padding: 0 12px;
+  }
+
+  .rf-login-input {
+    font-size: 13px;
+  }
+
   .rf-login-btn {
-    height: 46px;
+    height: 48px;
   }
 
   .rf-login-footer {
+    margin-top: 21px;
+
     font-size: 11px;
   }
-
-  .rf-login-decoration {
-    bottom: 15px;
-  }
-
 }
 
 
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
+/* =========================================
+   VERY SMALL MOBILE
+   ========================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 360px) {
 
-  .rf-login-main {
-    padding-left: 12px;
-    padding-right: 12px;
+  .rf-login-page {
+    padding: 12px;
   }
 
-  .rf-login-logo {
-    font-size: 23px;
+  .rf-login-card {
+    padding: 27px 18px;
   }
 
   .rf-login-title {
     font-size: 25px;
   }
 
-  .rf-login-subtitle {
-    font-size: 11px;
-
-    max-width: 280px;
+  .rf-login-input-wrapper {
+    height: 46px;
   }
 
-  .rf-login-card {
-    padding: 17px;
+  .rf-login-btn {
+    height: 46px;
   }
-
-  .rf-login-footer {
-    flex-direction: column;
-
-    gap: 3px;
-  }
-
 }
+

@@ -68,7 +68,7 @@ export default function RenderFlashLayout() {
           </NavLink>
 
           <NavLink to="/main/settings">
-            <CgProfile />
+            <i className="bi bi-gear-fill"></i>
             Settings
           </NavLink>
         </aside>
@@ -91,14 +91,14 @@ export default function RenderFlashLayout() {
             </div>
           </div>
 
-          {/* <div className="rf-panel">
+          <div className="rf-panel">
             <div className="rf-panel-title">
               <i className="bi bi-search"></i>
               Discover
             </div>
 
             <div className="rf-panel-content">Search Categories </div>
-          </div> */}
+          </div>
 
           <div className="rf-panel">
             <div className="rf-panel-title">

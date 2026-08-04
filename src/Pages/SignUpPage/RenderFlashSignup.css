@@ -1,26 +1,13 @@
 
 /* =========================================
-   RENDERFLASH SIGNUP
-   ========================================= */
+   RESET
+========================================= */
 
 .rf-signup-page {
-  min-height: 100vh;
   width: 100%;
+  min-height: 100vh;
 
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(98, 30, 255, 0.10),
-      transparent 35%
-    ),
-    #050505;
+  background: #050505;
 
   color: #ffffff;
 
@@ -29,168 +16,105 @@
 
 
 /* =========================================
-   BACKGROUND GLOWS
-   ========================================= */
-
-.rf-signup-glow {
-  position: absolute;
-
-  width: 420px;
-  height: 420px;
-
-  border-radius: 50%;
-
-  filter: blur(120px);
-
-  pointer-events: none;
-
-  opacity: 0.35;
-}
-
-.rf-signup-glow-one {
-  top: -180px;
-  left: -120px;
-
-  background: #621eff;
-}
-
-.rf-signup-glow-two {
-  right: -180px;
-  bottom: -180px;
-
-  background: #621eff;
-}
-
-
-/* =========================================
-   NAVIGATION
-   ========================================= */
-
-.rf-signup-header {
-  position: relative;
-
-  z-index: 10;
-
-  width: 100%;
-
-  padding: 24px 5%;
-
-  display: flex;
-  align-items: center;
-}
-
-.rf-signup-brand {
-  color: #ffffff;
-
-  text-decoration: none;
-
-  font-size: 20px;
-  font-weight: 700;
-
-  letter-spacing: -0.5px;
-
-  transition: 0.25s ease;
-}
-
-.rf-signup-brand:hover {
-  color: #b59aff;
-
-  text-shadow:
-    0 0 20px rgba(98, 30, 255, 0.5);
-}
-
-
-/* =========================================
    CENTER
-   ========================================= */
+========================================= */
 
 .rf-signup-main {
-  flex: 1;
-
-  position: relative;
-
-  z-index: 5;
+  width: 100%;
+  min-height: 100vh;
 
   display: flex;
-
+  align-items: center;
   justify-content: center;
-  align-items: center;
 
-  padding: 40px 20px 70px;
-
-  overflow-y: auto;
-}
-
-.rf-signup-content {
-  width: 100%;
-
-  max-width: 430px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-}
-
-
-/* =========================================
-   GRADIENT BRAND
-   ========================================= */
-
-.rf-signup-logo-link {
-  display: block;
-
-  width: 100%;
-
-  text-decoration: none;
-}
-
-.rf-signup-gradient {
-  min-height: 0 !important;
-
-  height: 0 !important;
-
-  overflow: hidden;
+  padding: 30px 20px;
 }
 
 
 /* =========================================
    CARD
-   ========================================= */
+========================================= */
 
 .rf-signup-card {
   width: 100%;
+  max-width: 430px;
 
-  padding: 30px;
+  padding: 36px;
 
-  border-radius: 18px;
+  background: #111111;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.055),
-      rgba(255, 255, 255, 0.018)
-    );
+  border: 1px solid #292929;
 
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
 
   box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.55),
-    0 0 50px rgba(98, 30, 255, 0.07);
+    0 20px 60px rgba(0, 0, 0, 0.45);
+}
 
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+
+/* =========================================
+   HEADING
+========================================= */
+
+.rf-signup-heading {
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+
+/* LOGO */
+
+.rf-signup-logo {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  color: #621eff;
+
+  font-size: 25px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  text-decoration: none;
+}
+
+.rf-signup-logo:hover {
+  color: #7540ff;
+}
+
+
+/* TITLE */
+
+.rf-signup-heading h1 {
+  margin: 0;
+
+  font-size: 27px;
+
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+
+/* DESCRIPTION */
+
+.rf-signup-heading p {
+  margin: 8px 0 0;
+
+  color: #888888;
+
+  font-size: 13px;
 }
 
 
 /* =========================================
    FORM
-   ========================================= */
+========================================= */
 
 .rf-signup-form {
-  width: 100%;
-
   display: flex;
 
   flex-direction: column;
@@ -201,20 +125,18 @@
 
 /* =========================================
    FIELD
-   ========================================= */
+========================================= */
 
 .rf-signup-field {
-  width: 100%;
-
   display: flex;
 
   flex-direction: column;
 
-  gap: 8px;
+  gap: 7px;
 }
 
 .rf-signup-field label {
-  color: #d8d8d8;
+  color: #d0d0d0;
 
   font-size: 13px;
 
@@ -224,66 +146,72 @@
 
 /* =========================================
    INPUT WRAPPER
-   ========================================= */
+========================================= */
 
 .rf-signup-input-wrapper {
   width: 100%;
-
   height: 50px;
 
   display: flex;
-
   align-items: center;
 
   gap: 11px;
 
   padding: 0 14px;
 
-  border-radius: 10px;
+  background: #1a1a1a;
 
-  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid #303030;
 
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
 
-  transition: 0.25s ease;
+  transition: 0.2s ease;
 }
 
 .rf-signup-input-wrapper i {
-  color: #888;
+  flex-shrink: 0;
+
+  color: #777777;
 
   font-size: 16px;
 
-  flex-shrink: 0;
-
-  transition: 0.25s ease;
+  transition: 0.2s ease;
 }
 
 .rf-signup-input-wrapper:focus-within {
-  border-color: rgba(98, 30, 255, 0.75);
+  border-color: #621eff;
 
-  background: rgba(98, 30, 255, 0.07);
-
-  box-shadow:
-    0 0 0 3px rgba(98, 30, 255, 0.08),
-    0 0 25px rgba(98, 30, 255, 0.08);
+  background: #1d1a27;
 }
 
 .rf-signup-input-wrapper:focus-within i {
-  color: #9a73ff;
+  color: #8d66ff;
+}
+
+.title_logo{
+  
+  width: 220px;
+  height: 33px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .title_logo {
+    width: 150px;
+    height: 22px;
+  }
 }
 
 
 /* =========================================
    INPUT
-   ========================================= */
+========================================= */
 
 .rf-signup-input {
   width: 100%;
-
   height: 100%;
 
   border: none;
-
   outline: none;
 
   background: transparent;
@@ -296,40 +224,28 @@
 }
 
 .rf-signup-input::placeholder {
-  color: #777;
-}
-
-.rf-signup-input:-webkit-autofill,
-.rf-signup-input:-webkit-autofill:hover,
-.rf-signup-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #ffffff;
-
-  transition:
-    background-color 9999s ease-in-out 0s;
+  color: #666666;
 }
 
 
 /* =========================================
    SIGNUP BUTTON
-   ========================================= */
+========================================= */
 
 .rf-signup-btn {
   width: 100%;
-
   height: 50px;
 
-  margin-top: 5px;
+  margin-top: 4px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  gap: 10px;
+  gap: 9px;
 
   border: none;
-
-  border-radius: 10px;
+  border-radius: 8px;
 
   background: #621eff;
 
@@ -338,30 +254,21 @@
   font-family: "Poppins", sans-serif;
 
   font-size: 14px;
-
   font-weight: 600;
 
   cursor: pointer;
 
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: 0.2s ease;
 }
 
 .rf-signup-btn i {
-  font-size: 16px;
+  font-size: 15px;
 
-  transition: transform 0.25s ease;
+  transition: transform 0.2s ease;
 }
 
 .rf-signup-btn:hover {
   background: #7440ff;
-
-  box-shadow:
-    0 10px 35px rgba(98, 30, 255, 0.35);
-
-  transform: translateY(-1px);
 }
 
 .rf-signup-btn:hover i {
@@ -369,13 +276,13 @@
 }
 
 .rf-signup-btn:active {
-  transform: translateY(0);
+  transform: scale(0.99);
 }
 
 
 /* =========================================
    FOOTER
-   ========================================= */
+========================================= */
 
 .rf-signup-footer {
   display: flex;
@@ -387,9 +294,9 @@
 
   gap: 5px;
 
-  margin-top: 24px;
+  margin-top: 26px;
 
-  color: #777;
+  color: #777777;
 
   font-size: 12px;
 
@@ -407,50 +314,24 @@
 }
 
 .rf-signup-login:hover {
-  color: #c8b8ff;
-
-  text-shadow:
-    0 0 15px rgba(98, 30, 255, 0.5);
+  color: #c1aeff;
 }
 
 
 /* =========================================
    TABLET
-   ========================================= */
+========================================= */
 
-@media (min-width: 768px) {
-
-  .rf-signup-header {
-    padding: 28px 6%;
-  }
-
-  .rf-signup-brand {
-    font-size: 22px;
-  }
+@media (max-width: 768px) {
 
   .rf-signup-main {
-    padding: 30px 20px 70px;
+    padding: 25px 18px;
   }
 
   .rf-signup-card {
-    padding: 34px;
-  }
+    max-width: 420px;
 
-}
-
-
-/* =========================================
-   DESKTOP
-   ========================================= */
-
-@media (min-width: 1200px) {
-
-  .rf-signup-header {
-    padding: 30px 7%;
-  }
-
-  .rf-signup-card {
-    padding: 36px;
+    padding: 32px 28px;
   }
 
 }
@@ -458,39 +339,46 @@
 
 /* =========================================
    MOBILE
-   ========================================= */
+========================================= */
 
 @media (max-width: 480px) {
 
-  .rf-signup-header {
-    padding: 20px;
-  }
-
-  .rf-signup-brand {
-    font-size: 18px;
-  }
-
   .rf-signup-main {
-    align-items: flex-start;
+    min-height: 100dvh;
 
-    padding:
-      25px
-      14px
-      50px;
+    padding: 20px 14px;
   }
 
   .rf-signup-card {
-    padding: 22px 18px;
+    padding: 28px 20px;
 
-    border-radius: 15px;
+    border-radius: 12px;
+  }
+
+  .rf-signup-heading {
+    margin-bottom: 25px;
+  }
+
+  .rf-signup-logo {
+    font-size: 22px;
+
+    margin-bottom: 14px;
+  }
+
+  .rf-signup-heading h1 {
+    font-size: 24px;
+  }
+
+  .rf-signup-heading p {
+    font-size: 12px;
   }
 
   .rf-signup-form {
     gap: 15px;
   }
 
-  .rf-signup-field {
-    gap: 7px;
+  .rf-signup-field label {
+    font-size: 12px;
   }
 
   .rf-signup-input-wrapper {
@@ -510,16 +398,34 @@
   }
 
   .rf-signup-footer {
-    margin-top: 20px;
+    margin-top: 21px;
 
     font-size: 11px;
   }
+}
 
-  .rf-signup-glow {
-    width: 280px;
-    height: 280px;
 
-    filter: blur(90px);
+/* =========================================
+   VERY SMALL SCREENS
+========================================= */
+
+@media (max-width: 360px) {
+
+  .rf-signup-main {
+    padding: 15px 10px;
   }
+
+  .rf-signup-card {
+    padding: 24px 16px;
+  }
+
+  .rf-signup-heading h1 {
+    font-size: 22px;
+  }
+
+  .rf-signup-form {
+    gap: 13px;
+  }
+
 }
 
