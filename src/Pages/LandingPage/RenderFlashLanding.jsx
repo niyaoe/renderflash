@@ -51,7 +51,7 @@ const RenderFlashLanding = () => {
                 <option value="en">English</option>
                 {/* <option value="hi">Hindi</option> */}
                 <option value="ar">Arabic</option>
-                {/* <option value="jn">Japanese</option> */}
+                <option value="jn">Japanese</option>
                 {/* <option value="tl">Tamil</option> */}
                 {/* <option value="ml">Malayalam</option> */}
               </select>
