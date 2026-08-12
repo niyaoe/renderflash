@@ -40,20 +40,21 @@ const SignUpPage = () => {
       });
 
       // Store token
-      localStorage.setItem("token", res.data.token);
+      // localStorage.setItem("token", res.data.token);
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          name: res.data.user.username,
-          avatar: res.data.user.avatar,
-        }),
+      // localStorage.setItem(
+      //   "user",
+      //   JSON.stringify({
+      //     name: res.data.user.username,
+      //     avatar: res.data.user.avatar,
+      //   }),
+      // );
+
+      toast.success(
+        "Account created! Please check your email to verify your account.",
       );
 
-      toast.success("Signup successful");
-
-      // Redirect after signup
-      navigate("/main/profile");
+      navigate("/verify-email");
     } catch (err) {
       console.log(err.response?.data || err.message);
 

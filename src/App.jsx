@@ -25,6 +25,7 @@ import RoomChat from "./Pages/Feed_Section/Chat/PrivateChat/RoomChat";
 import UploadPost from "./Pages/Feed_Section/UploadPost/UploadPost";
 import Users from "./Pages/Users/Users";
 import PublicProfile from "./Pages/PublicProfile/PublicProfile";
+import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail";
 
 const App = () => {
   return (
@@ -49,6 +50,7 @@ const App = () => {
             <Route path="/login" element={<RenderFlashLogin />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
 
             <Route
               path="/main"

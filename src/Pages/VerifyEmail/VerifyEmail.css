@@ -1,0 +1,222 @@
+/* =========================
+   PAGE
+========================= */
+
+.rf-verify-page {
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background: #050505;
+
+  color: white;
+
+  font-family: "Poppins", sans-serif;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.rf-verify-card {
+  width: 100%;
+  max-width: 440px;
+
+  padding: 45px 35px;
+
+  text-align: center;
+
+  background: #111111;
+
+  border: 1px solid #272727;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.rf-verify-icon {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 25px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 30px;
+}
+
+
+/* SUCCESS */
+
+.rf-verify-icon.success {
+  background: rgba(98, 30, 255, 0.15);
+
+  border: 1px solid rgba(98, 30, 255, 0.5);
+
+  color: #621eff;
+}
+
+
+/* ERROR */
+
+.rf-verify-icon.error {
+  background: rgba(255, 60, 60, 0.1);
+
+  border: 1px solid rgba(255, 60, 60, 0.3);
+
+  color: #ff5555;
+}
+
+
+/* LOADING */
+
+.rf-verify-icon.loading {
+  background: rgba(98, 30, 255, 0.1);
+
+  border: 1px solid rgba(98, 30, 255, 0.3);
+}
+
+
+/* =========================
+   SPINNER
+========================= */
+
+.rf-verify-spinner {
+  width: 28px;
+  height: 28px;
+
+  border: 3px solid #333;
+
+  border-top-color: #621eff;
+
+  border-radius: 50%;
+
+  animation: rfVerifySpin 0.8s linear infinite;
+}
+
+@keyframes rfVerifySpin {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.rf-verify-title {
+  margin: 0 0 15px;
+
+  font-size: 26px;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.rf-verify-message {
+  margin: 0 auto 30px;
+
+  max-width: 350px;
+
+  color: #999;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.rf-verify-button {
+  width: 100%;
+
+  min-height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #621eff;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.rf-verify-button:hover {
+  background: #7640ff;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .rf-verify-page {
+    padding: 15px;
+  }
+
+  .rf-verify-card {
+    padding: 35px 22px;
+
+    border-radius: 12px;
+  }
+
+  .rf-verify-title {
+    font-size: 22px;
+  }
+
+  .rf-verify-message {
+    font-size: 13px;
+  }
+
+}
