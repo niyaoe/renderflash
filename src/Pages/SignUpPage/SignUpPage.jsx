@@ -51,10 +51,12 @@ const SignUpPage = () => {
       // );
 
       toast.success(
-        "Account created! Please check your email to verify your account.",
+        // "Account created! Please check your email to verify your account.",
+        "Account created! Unverified!. Please log in"
       );
 
-      navigate("/verify-email");
+      // navigate("/verify-email");
+      navigate("/login");
     } catch (err) {
       console.log(err.response?.data || err.message);
 
