@@ -73,7 +73,7 @@ export default function AccountSettings() {
 
         {/* CHANGE PASSWORD NAV */}
         <Link
-          to="/main/profile/settings/change-password"
+          to="/main/settings/change-password"
           className="rf-settings-nav"
         >
           Change Password

@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineDynamicFeed } from "react-icons/md";
 import { RiGlobalFill } from "react-icons/ri";
@@ -9,10 +9,10 @@ import Users from "../../Users/Users";
 import UsersDropdown from "./RightBar/UsersDropdown";
 import { useState } from "react";
 import UploadPost from "../UploadPost/UploadPost";
-import logo from "../../../assets/logo/Artboard 1@3x hello.png"
+import logo from "../../../assets/logo/Artboard 1@3x hello.png";
 
 export default function RenderFlashLayout() {
-  const [showUploadModal, setShowUploadModal] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="reddit-layout">
@@ -21,7 +21,7 @@ export default function RenderFlashLayout() {
         <div className="reddit-header-inner">
           <div className="rf-feed-logo">
             {/* renderFlash<span>.io</span> */}
-            <img className="rf-new-logo"  src={logo} alt="" />
+            <img className="rf-new-logo" src={logo} alt="" />
           </div>
 
           <div className="reddit-search">
@@ -37,7 +37,7 @@ export default function RenderFlashLayout() {
               <i className="bi bi-people-fill"></i>
             </NavLink>
 
-            < NavLink onClick={() => setShowUploadModal(true)}>
+            <NavLink to="upload">
               <i className="bi bi-plus-square"></i>
             </NavLink>
           </div>
@@ -129,9 +129,6 @@ export default function RenderFlashLayout() {
           <CgProfile />
         </NavLink>
       </nav>
-      {showUploadModal && (
-        <UploadPost onClose={() => setShowUploadModal(false)} />
-      )}
     </div>
   );
 }

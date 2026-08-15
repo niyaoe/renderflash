@@ -1,457 +1,680 @@
-/* ===========================
-   RenderFlash Upload Modal
-=========================== */
+/* =====================================================
+   UPLOAD PAGE
+===================================================== */
 
-.rf-upload-modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 20px;
-
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(10px);
+.rf-upload-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 40px 20px 60px;
+  box-sizing: border-box;
 }
 
-/* ===========================
-   MODAL
-=========================== */
-
-.rf-upload-modal {
+.rf-upload-container {
   width: 100%;
-  max-width: 720px;
-  max-height: 92vh;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.rf-upload-header {
+  margin-bottom: 30px;
+}
+
+.rf-upload-heading {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.rf-upload-subtitle {
+  margin: 8px 0 0;
+  color: #8f8f8f;
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.rf-upload-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  gap: 24px;
+  align-items: start;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.rf-upload-preview-section,
+.rf-upload-details {
+  background: #111111;
+  border: 1px solid #242424;
+  border-radius: 16px;
+  padding: 22px;
+  box-sizing: border-box;
+}
+
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.rf-upload-section-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
 
-  background: #161616;
-  border: 1px solid #2f2f2f;
-  border-radius: 14px;
+.rf-upload-section-header h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+
+/* =====================================================
+   PREVIEW BOX
+===================================================== */
+
+.rf-upload-preview-box {
+  width: 100%;
+  height: 500px;
+
+  background: #080808;
+
+  border: 1px dashed #303030;
+  border-radius: 12px;
 
   overflow: hidden;
 
-  box-shadow: 0 15px 50px rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
 }
 
-/* ===========================
-   HEADER
-=========================== */
-
-.rf-upload-modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:18px 22px;
-
-  border-bottom:1px solid #2d2d2d;
-
-  background:#161616;
+.rf-upload-preview-box.has-media {
+  border-style: solid;
+  border-color: #292929;
 }
 
-.rf-upload-title{
-  color:white;
-  margin:0;
-  font-size:22px;
-  font-weight:600;
+
+/* =====================================================
+   ORIGINAL MEDIA DIMENSIONS
+===================================================== */
+
+.rf-upload-preview-media {
+  width: 100%;
+  height: 100%;
+
+  /*
+    IMPORTANT:
+    contain keeps the complete original
+    image/video visible without cropping.
+  */
+
+  object-fit: contain;
+
+  display: block;
+
+  background: #080808;
 }
 
-.rf-upload-close{
 
-  width:42px;
-  height:42px;
+/* =====================================================
+   EMPTY PREVIEW
+===================================================== */
 
-  border:none;
-  border-radius:50%;
+.rf-upload-empty {
+  width: 100%;
+  height: 100%;
 
-  background:#222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  color:#ddd;
+  text-align: center;
 
-  cursor:pointer;
+  cursor: pointer;
+  padding: 30px;
 
-  transition:.25s;
+  box-sizing: border-box;
 }
 
-.rf-upload-close:hover{
+.rf-upload-empty-icon {
+  width: 70px;
+  height: 70px;
 
-  background:#621eff;
-  color:white;
+  border-radius: 50%;
 
+  background: rgba(98, 30, 255, 0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
 }
 
-/* ===========================
-   BODY
-=========================== */
-
-.rf-upload-modal-body{
-
-  flex:1;
-
-  overflow-y:auto;
-
-  padding:20px;
-
-  display:flex;
-  flex-direction:column;
-
-  gap:18px;
-
+.rf-upload-empty-icon i {
+  color: #621eff;
+  font-size: 30px;
 }
 
-/* ===========================
-   PREVIEW
-=========================== */
+.rf-upload-empty h3 {
+  margin: 0 0 8px;
 
-.rf-upload-preview-wrapper{
+  color: #ffffff;
 
-  width:100%;
-  height:430px;
-
-  background:#0f0f0f;
-
-  border-radius:12px;
-
-  border:1px solid #2a2a2a;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  overflow:hidden;
-
+  font-size: 17px;
+  font-weight: 600;
 }
 
-.rf-upload-preview{
+.rf-upload-empty p {
+  margin: 0 0 22px;
 
-  width:100%;
-  height:100%;
+  color: #777777;
 
-  object-fit:contain;
-
-  display:block;
-
+  font-size: 13px;
 }
 
-/* ===========================
-   SELECT
-=========================== */
 
-.rf-upload-category{
+/* =====================================================
+   SELECT MEDIA BUTTON
+===================================================== */
 
-  width:100%;
-  height:50px;
+.rf-upload-select-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 
-  border-radius:10px;
+  padding: 11px 18px;
 
-  background:#1d1d1d;
+  background: #621eff;
+  color: #ffffff;
 
-  border:1px solid #2d2d2d;
+  border-radius: 8px;
 
-  color:white;
-
-  padding:0 14px;
-
-  font-size:15px;
-
+  font-size: 13px;
+  font-weight: 600;
 }
 
-/* ===========================
+
+/* =====================================================
+   CHANGE MEDIA
+===================================================== */
+
+.rf-upload-change-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 14px;
+
+  width: 100%;
+  padding: 11px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #292929;
+  border-radius: 8px;
+
+  color: #c5c5c5;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.rf-upload-change-btn:hover {
+  border-color: #621eff;
+  color: #ffffff;
+}
+
+
+/* =====================================================
+   REMOVE
+===================================================== */
+
+.rf-upload-remove-btn {
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #888888;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.rf-upload-remove-btn:hover {
+  color: #ff4d4d;
+}
+
+
+/* =====================================================
+   FORM GROUP
+===================================================== */
+
+.rf-upload-form-group {
+  margin-bottom: 24px;
+}
+
+.rf-upload-label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #eeeeee;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =====================================================
    CAPTION
-=========================== */
+===================================================== */
 
-.rf-upload-caption{
+.rf-upload-caption {
+  width: 100%;
+  min-height: 150px;
 
-  width:100%;
+  padding: 14px;
 
-  min-height:130px;
+  box-sizing: border-box;
 
-  resize:vertical;
+  resize: vertical;
 
-  padding:15px;
+  border: 1px solid #292929;
+  border-radius: 10px;
 
-  border-radius:10px;
+  outline: none;
 
-  background:#1d1d1d;
+  background: #0b0b0b;
+  color: #ffffff;
 
-  border:1px solid #2d2d2d;
+  font-family: inherit;
+  font-size: 14px;
 
-  color:white;
-
-  font-size:15px;
-
-  line-height:1.6;
-
+  transition: border-color 0.2s ease;
 }
 
-.rf-upload-caption:focus,
-.rf-upload-category:focus{
-
-  outline:none;
-
-  border-color:#621eff;
-
+.rf-upload-caption::placeholder {
+  color: #606060;
 }
 
-/* ===========================
-   FILE BUTTON
-=========================== */
-
-.rf-upload-file-btn{
-
-  width:fit-content;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-  padding:13px 18px;
-
-  background:#252525;
-
-  border-radius:10px;
-
-  color:white;
-
-  cursor:pointer;
-
-  transition:.25s;
-
+.rf-upload-caption:focus {
+  border-color: #621eff;
 }
 
-.rf-upload-file-btn:hover{
 
-  background:#621eff;
+/* =====================================================
+   CHARACTER COUNT
+===================================================== */
 
+.rf-upload-character-count {
+  margin-top: 6px;
+
+  text-align: right;
+
+  color: #555555;
+
+  font-size: 11px;
 }
 
-/* ===========================
-   FOOTER
-=========================== */
 
-.rf-upload-modal-footer{
+/* =====================================================
+   CATEGORY SEARCH
+===================================================== */
 
-  flex-shrink:0;
+.rf-upload-category-search {
+  width: 100%;
 
-  padding:18px 20px;
+  height: 44px;
 
-  border-top:1px solid #2d2d2d;
+  display: flex;
+  align-items: center;
 
-  background:#161616;
+  gap: 10px;
 
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #292929;
+  border-radius: 9px;
+
+  background: #0b0b0b;
 }
 
-.rf-upload-submit-btn{
-
-  width:100%;
-
-  height:52px;
-
-  border:none;
-
-  border-radius:10px;
-
-  background:#621eff;
-
-  color:white;
-
-  font-size:16px;
-
-  font-weight:600;
-
-  cursor:pointer;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  gap:10px;
-
-  transition:.25s;
-
+.rf-upload-category-search i {
+  color: #666666;
+  font-size: 14px;
 }
 
-.rf-upload-submit-btn:hover{
+.rf-upload-category-search input {
+  width: 100%;
 
-  background:#7943ff;
+  border: none;
+  outline: none;
 
+  background: transparent;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
 }
 
-.rf-upload-submit-btn:disabled{
-
-  opacity:.6;
-
-  cursor:not-allowed;
-
+.rf-upload-category-search input::placeholder {
+  color: #606060;
 }
 
-/* ===========================
-   SPINNER
-=========================== */
 
-.rf-upload-spinner{
+/* =====================================================
+   CATEGORY LIST
+===================================================== */
 
-  width:18px;
-  height:18px;
+.rf-upload-category-list {
+  display: flex;
+  flex-direction: column;
 
-  border:2px solid rgba(255,255,255,.3);
-  border-top:2px solid white;
+  gap: 6px;
 
-  border-radius:50%;
+  margin-top: 10px;
 
-  animation:rfSpin .7s linear infinite;
+  max-height: 220px;
 
+  overflow-y: auto;
+
+  padding-right: 3px;
 }
 
-@keyframes rfSpin{
+.rf-upload-category-list::-webkit-scrollbar {
+  width: 4px;
+}
 
-  to{
+.rf-upload-category-list::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-    transform:rotate(360deg);
+.rf-upload-category-list::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 10px;
+}
 
+
+/* =====================================================
+   CATEGORY ITEM
+===================================================== */
+
+.rf-upload-category-item {
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 10px 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid transparent;
+
+  border-radius: 8px;
+
+  background: #151515;
+
+  color: #aaaaaa;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.rf-upload-category-item:hover {
+  background: #1b1b1b;
+  color: #ffffff;
+}
+
+.rf-upload-category-item.active {
+  background: rgba(98, 30, 255, 0.12);
+
+  border-color: rgba(98, 30, 255, 0.5);
+
+  color: #ffffff;
+}
+
+.rf-upload-category-item.active i {
+  color: #8d5cff;
+}
+
+
+/* =====================================================
+   SELECTED CATEGORY
+===================================================== */
+
+.rf-upload-selected-category {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 12px;
+
+  font-size: 12px;
+
+  color: #777777;
+}
+
+.rf-upload-selected-category strong {
+  color: #b99cff;
+}
+
+
+/* =====================================================
+   CATEGORY LOADING
+===================================================== */
+
+.rf-upload-category-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 80px;
+
+  color: #777777;
+
+  font-size: 12px;
+}
+
+.rf-upload-no-category {
+  text-align: center;
+
+  padding: 25px 10px;
+
+  color: #666666;
+
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   SMALL SPINNER
+===================================================== */
+
+.rf-upload-small-spinner {
+  width: 14px;
+  height: 14px;
+
+  border: 2px solid #333333;
+  border-top-color: #621eff;
+
+  border-radius: 50%;
+
+  animation: rfUploadSpin 0.7s linear infinite;
+}
+
+
+/* =====================================================
+   SUBMIT BUTTON
+===================================================== */
+
+.rf-upload-submit {
+  width: 100%;
+
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #621eff;
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.rf-upload-submit:hover:not(:disabled) {
+  background: #7040ff;
+  transform: translateY(-1px);
+}
+
+.rf-upload-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =====================================================
+   UPLOAD SPINNER
+===================================================== */
+
+.rf-upload-spinner {
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+
+  border-radius: 50%;
+
+  animation: rfUploadSpin 0.7s linear infinite;
+}
+
+@keyframes rfUploadSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+  .rf-upload-content {
+    grid-template-columns: 1fr;
   }
 
+  .rf-upload-preview-box {
+    height: 480px;
+  }
 }
 
-/* ===========================
-   SCROLLBAR
-=========================== */
 
-.rf-upload-modal-body::-webkit-scrollbar{
+@media (max-width: 600px) {
+  .rf-upload-container{
+    padding-bottom: 100px;
+  }
 
-  width:6px;
+  .rf-upload-page {
+    padding: 25px 12px 40px;
+  }
 
+  .rf-upload-heading {
+    font-size: 25px;
+  }
+
+  .rf-upload-subtitle {
+    font-size: 13px;
+  }
+
+  .rf-upload-preview-section,
+  .rf-upload-details {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .rf-upload-preview-box {
+    height: 350px;
+  }
+
+  .rf-upload-caption {
+    min-height: 120px;
+  }
 }
 
-.rf-upload-modal-body::-webkit-scrollbar-thumb{
 
-  background:#444;
+@media (max-width: 400px) {
+  .rf-upload-page {
+    padding: 20px 10px 30px;
+  }
 
-  border-radius:10px;
+  .rf-upload-heading {
+    font-size: 22px;
+  }
 
-}
+  .rf-upload-preview-box {
+    height: 280px;
+  }
 
-/* ===========================
-   TABLET
-=========================== */
-
-@media (max-width:900px){
-
-.rf-upload-modal{
-
-    max-width:95%;
-
-}
-
-.rf-upload-preview-wrapper{
-
-    height:340px;
-
-}
-
-}
-
-/* ===========================
-   MOBILE
-=========================== */
-
-@media (max-width:768px){
-
-.rf-upload-modal-overlay{
-
-    align-items:flex-end;
-
-    padding:0;
-
-}
-
-.rf-upload-modal{
-
-    width:100%;
-
-    height:100vh;
-
-    max-height:100vh;
-
-    border-radius:22px 22px 0 0;
-
-}
-
-.rf-upload-modal-header{
-
-    padding:16px;
-
-}
-
-.rf-upload-modal-body{
-
-    padding:16px;
-
-    padding-bottom:20px;
-
-}
-
-.rf-upload-preview-wrapper{
-
-    height:250px;
-
-}
-
-.rf-upload-caption{
-
-    min-height:100px;
-
-}
-
-.rf-upload-modal-footer{
-
-    padding:16px;
-
-    padding-bottom:calc(env(safe-area-inset-bottom) + 16px);
-
-}
-
-.rf-upload-submit-btn{
-
-    height:54px;
-
-    font-size:16px;
-
-}
-
-}
-
-/* ===========================
-   SMALL DEVICES
-=========================== */
-
-@media (max-width:420px){
-
-.rf-upload-preview-wrapper{
-
-    height:210px;
-
-}
-
-.rf-upload-title{
-
-    font-size:20px;
-
-}
-
-.rf-upload-file-btn{
-
-    width:100%;
-
-    justify-content:center;
-
-}
-
+  .rf-upload-preview-section,
+  .rf-upload-details {
+    padding: 13px;
+  }
 }

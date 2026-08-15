@@ -9,7 +9,7 @@ export default function ChangePassword() {
 
   return (
     <div className="rf-account-settings">
-      <h3 className="rf-settings-title">Change Password</h3>
+      <h3 className="rf-settings-title">Change Password (DEMO)</h3>
 
       <form className="rf-settings-form">
         <div className="rf-form-group">

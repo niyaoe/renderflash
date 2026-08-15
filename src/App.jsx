@@ -15,8 +15,6 @@ import EditProfile from "./Pages/Settings/EditProfile/EditProfile";
 import PrivacySettings from "./Pages/Settings/PrivacySettings/PrivacySettings";
 import ChangePassword from "./Pages/Settings/Change Password/ChangePassword";
 import Notifications from "./Pages/Notification/Notifications";
-import YourPosts from "./Pages/Profile/YourPosts/YourPosts";
-import SavedPosts from "./Pages/Profile/SavedPosts/SavedPosts";
 import { ToastContainer, Bounce } from "react-toastify";
 import ProtectedRoute from "./protect/ProtectedRoute";
 import ChatHome from "./Pages/Feed_Section/Chat/ChatHome/ChatHome";
@@ -67,14 +65,12 @@ const App = () => {
               <Route path="chat/global" element={<GlobalChat />} />
               <Route path="chat/private" element={<PrivateRoomHome />} />
               <Route path="chat/private/:roomId" element={<RoomChat />} />
-              <Route path="profile" element={<Profile />}>
-                <Route index element={<Navigate to="posts" />} />
-                <Route path="posts" element={<YourPosts />} />
-                <Route path="saved" element={<SavedPosts />} />
-              </Route>
+              <Route path="profile" element={<Profile />} />
+
               <Route path="notifications" element={<Notifications />} />
               <Route path="users" element={<Users />} />
               <Route path="users/:id" element={<PublicProfile />} />
+              <Route path="upload" element={<UploadPost />} />
 
               <Route
                 path="main/settings/edit-profile"

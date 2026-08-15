@@ -170,8 +170,8 @@ export default function Feed() {
     );
   }
 
-  // console.log(feedPosts.map((post) => post._id));
-
+  console.log("category debugg",feedPosts.map((post) => post));
+  
   return (
     <div className="rf-video-feed">
       {feedPosts.map((post) => (
@@ -191,7 +191,7 @@ export default function Feed() {
             </div>
 
             <div className="rf-post-category">
-              <span className="rf-category">{post.category}</span>
+              <span className="rf-category">{post.category?.name}</span>
             </div>
           </div>
 
