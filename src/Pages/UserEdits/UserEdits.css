@@ -1,0 +1,546 @@
+/* ================= USER EDITS FEED ================= */
+
+.rf-user-edits-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ================= CARD ================= */
+
+.rf-user-edits-card {
+  background: #121212;
+  border: 1px solid #262626;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.rf-user-edits-card:hover {
+  border-color: #3d3d3d;
+}
+
+/* ================= HEADER ================= */
+
+.rf-user-edits-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.rf-user-edits-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rf-user-edits-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.rf-user-edits-username {
+  margin: 0;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rf-user-edits-category {
+  font-size: 12px;
+  color: #bdbdbd;
+  border: 1px solid #333;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+/* ================= MEDIA ================= */
+
+.rf-user-edits-video,
+.rf-user-edits-image {
+  width: 100%;
+  max-height: 700px;
+  object-fit: cover;
+  display: block;
+  background: black;
+}
+
+/* ================= ACTION BAR ================= */
+
+.rf-user-edits-actions {
+  padding: 12px 16px 8px;
+}
+
+.rf-user-edits-actions-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 22px;
+}
+
+.rf-user-edits-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: transparent;
+  border: none;
+
+  color: #d5d5d5;
+
+  cursor: pointer;
+  padding: 0;
+
+  transition: color 0.2s ease;
+}
+
+.rf-user-edits-action-btn i {
+  font-size: 22px;
+}
+
+.rf-user-edits-action-btn span {
+  font-size: 14px;
+}
+
+.rf-user-edits-action-btn:hover {
+  color: white;
+}
+
+.rf-user-edits-action-btn.liked {
+  color: #ff3040;
+}
+
+/* ================= CAPTION ================= */
+
+.rf-user-edits-caption {
+  padding: 0 16px 16px;
+
+  color: #f5f5f5;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  word-break: break-word;
+}
+
+.rf-user-edits-caption-username {
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+/* ================= COMMENTS ================= */
+
+.rf-user-edits-comment-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  z-index: 999;
+}
+
+.rf-user-edits-comment-box {
+  width: 100%;
+  max-width: 600px;
+
+  height: 70vh;
+
+  background: #181818;
+
+  border: 1px solid #2c2c2c;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+/* ================= COMMENT HEADER ================= */
+
+.rf-user-edits-comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px;
+
+  border-bottom: 1px solid #2c2c2c;
+}
+
+.rf-user-edits-comment-header h4 {
+  margin: 0;
+  color: white;
+  font-size: 15px;
+}
+
+/* ================= COMMENT LIST ================= */
+
+.rf-user-edits-comment-list {
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 16px;
+
+  padding-bottom: 90px;
+}
+
+.rf-user-edits-comment-item {
+  margin-bottom: 15px;
+}
+
+.rf-user-edits-comment-item b {
+  color: white;
+  font-size: 14px;
+}
+
+.rf-user-edits-comment-item p {
+  color: #c8c8c8;
+
+  margin-top: 4px;
+  margin-bottom: 0;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ================= COMMENT INPUT ================= */
+
+.rf-user-edits-comment-input {
+  position: sticky;
+
+  bottom: 0;
+
+  display: flex;
+
+  gap: 10px;
+
+  padding: 12px;
+
+  background: #181818;
+
+  border-top: 1px solid #2c2c2c;
+
+  z-index: 100;
+}
+
+.rf-user-edits-comment-input input {
+  flex: 1;
+
+  background: #252525;
+
+  border: none;
+  outline: none;
+
+  color: white;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  font-family: "Poppins", sans-serif;
+}
+
+.rf-user-edits-comment-input input::placeholder {
+  color: #777;
+}
+
+.rf-user-edits-comment-send {
+  padding: 10px 14px;
+
+  background: #1c1c1c;
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-family: "Poppins", sans-serif;
+
+  transition: 0.2s ease;
+}
+
+.rf-user-edits-comment-send:hover {
+  background: #621eff;
+}
+
+.rf-user-edits-close-icon {
+  cursor: pointer;
+
+  color: #aaa;
+
+  font-size: 20px;
+
+  transition: color 0.2s ease;
+}
+
+.rf-user-edits-close-icon:hover {
+  color: white;
+}
+
+/* ================= LOADING ================= */
+
+.rf-user-edits-loading {
+  height: calc(100vh - 70px);
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 16px;
+
+  color: #bdbdbd;
+
+  font-size: 15px;
+
+  font-weight: 500;
+}
+
+.rf-user-edits-loader {
+  width: 42px;
+  height: 42px;
+
+  border: 4px solid #2d2d2d;
+
+  border-top: 4px solid #621eff;
+
+  border-radius: 50%;
+
+  animation: rfUserEditsSpin 0.8s linear infinite;
+}
+
+@keyframes rfUserEditsSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= LOAD MORE ================= */
+
+.rf-user-edits-load-more {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 25px 15px;
+
+  color: #888;
+
+  font-size: 14px;
+}
+
+/* ================= END ================= */
+
+.rf-user-edits-end {
+  text-align: center;
+
+  padding: 30px 0;
+
+  color: #888;
+
+  font-size: 14px;
+}
+
+/* ================= EMPTY ================= */
+
+.rf-user-edits-empty {
+  min-height: 200px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  color: #666;
+
+  font-size: 14px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .rf-user-edits-feed {
+    gap: 0;
+  }
+
+  .rf-user-edits-card {
+    border-left: none;
+    border-right: none;
+
+    border-radius: 0;
+
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .rf-user-edits-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .rf-user-edits-actions-left {
+    justify-content: flex-start;
+
+    gap: 22px;
+  }
+
+  .rf-user-edits-comment-box {
+    max-width: 100%;
+
+    height: 80vh;
+  }
+
+  .rf-user-edits-comment-input {
+    bottom: 80px;
+  }
+
+  .rf-user-edits-comment-list {
+    padding-bottom: 150px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 400px) {
+
+  .rf-user-edits-info {
+    padding: 12px;
+  }
+
+  .rf-user-edits-actions {
+    padding: 12px;
+  }
+
+  .rf-user-edits-caption {
+    padding: 0 12px 14px;
+  }
+
+  .rf-user-edits-actions-left {
+    gap: 18px;
+  }
+
+  .rf-user-edits-action-btn i {
+    font-size: 20px;
+  }
+
+  .rf-user-edits-action-btn span {
+    font-size: 13px;
+  }
+
+  .rf-user-edits-category {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}
+
+
+/* ================= USER EDITS PAGE ================= */
+
+.rf-user-edits-page {
+  width: 100%;
+}
+
+/* ================= HEADER ================= */
+
+.rf-user-edits-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 14px 16px;
+
+  background: #121212;
+  border-bottom: 1px solid #262626;
+}
+
+.rf-user-edits-back {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+
+  color: #ddd;
+
+  cursor: pointer;
+
+  border-radius: 50%;
+}
+
+.rf-user-edits-back:hover {
+  background: #222;
+  color: white;
+}
+
+.rf-user-edits-back i {
+  font-size: 20px;
+}
+
+.rf-user-edits-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+}
+
+.rf-user-edits-profile img {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+.rf-user-edits-profile h3 {
+  margin: 0;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rf-user-edits-profile span {
+  color: #777;
+
+  font-size: 11px;
+}
+
+/* ================= MEDIA WRAPPER ================= */
+
+.rf-user-edits-media {
+  width: 100%;
+  background: #000;
+}
+
+.rf-user-edits-media video,
+.rf-user-edits-media img {
+  width: 100%;
+  display: block;
+}

@@ -23,6 +23,7 @@ import RoomChat from "./Pages/Feed_Section/Chat/PrivateChat/RoomChat";
 import UploadPost from "./Pages/Feed_Section/UploadPost/UploadPost";
 import Users from "./Pages/Users/Users";
 import PublicProfile from "./Pages/PublicProfile/PublicProfile";
+import UserEdits from "./Pages/UserEdits/UserEdits";
 // import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail";
 
 const App = () => {
@@ -71,6 +72,9 @@ const App = () => {
               <Route path="users" element={<Users />} />
               <Route path="users/:id" element={<PublicProfile />} />
               <Route path="upload" element={<UploadPost />} />
+              <Route path="users/:id/edits" element={<UserEdits />} />
+
+              <Route path="users/:id/edits/:postId" element={<UserEdits />} />
 
               <Route
                 path="main/settings/edit-profile"
