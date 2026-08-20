@@ -170,7 +170,7 @@ export default function Feed() {
     );
   }
 
-  console.log("category debugg",feedPosts.map((post) => post));
+  // console.log("category debugg",feedPosts.map((post) => post));
   
   return (
     <div className="rf-video-feed">

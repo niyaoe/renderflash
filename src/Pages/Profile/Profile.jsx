@@ -213,25 +213,29 @@ const Profile = () => {
 
       <div className="rf-profile-grid">
         {(activeTab === "posts" ? posts : likedPosts).map((post) => (
-          <div key={post._id} className="rf-profile-item">
+          <Link
+            key={post._id}
+            to={`/main/users/${user._id}/edits/${post._id}`}
+            className="rf-profile-item"
+          >
             {post.mediaType === "image" ? (
-              <img src={post.media} alt="" />
+              <img src={post.media} alt={post.caption || ""} loading="lazy" />
             ) : (
-              <video src={post.media} muted />
+              <video src={post.media} muted preload="metadata" />
             )}
 
             <div className="rf-profile-overlay">
               <span>
                 <i className="bi bi-heart-fill"></i>
-                {post.likes.length}
+                {post.likes?.length || 0}
               </span>
 
               <span>
                 <i className="bi bi-chat-fill"></i>
-                {post.comments.length}
+                {post.comments?.length || 0}
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       {loading && (

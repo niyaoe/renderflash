@@ -293,7 +293,7 @@ export default function UserEdits() {
 
       {/* =========================
           HEADER
-      ========================= */}
+      ========================== */}
 
       <div className="rf-user-edits-header">
 
@@ -316,7 +316,7 @@ export default function UserEdits() {
 
             <div>
               <h3>{user.username}</h3>
-              <span>Edits</span>
+              {/* <span>Edits</span> */}
             </div>
           </div>
         )}
